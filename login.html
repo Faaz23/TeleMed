@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Telemed - Sign In/Up</title>
+    <link rel="stylesheet" href="login.css"> </head>
+<body>
+
+    <section id="login-container">
+        <div id="login-box">
+            <h2>Welcome to Telemed</h2>
+            <div id="form-options">
+                <button id="signin-btn" class="active">Sign In</button>
+                <button id="signup-btn">Sign Up</button>
+            </div>
+
+            <div id="signin-form">
+                <form>
+                    <input type="email" placeholder="Email" id="email" >
+                    <input type="password" placeholder="Password" id="password" >
+                    <button type="submit">Sign In</button>
+                </form>
+                <div class="or-separator"><span>OR</span></div>
+                <button class="google-signin">
+                    <img src="googlelogo.webp" alt="Google Sign-In"> Sign in with Google
+                </button>
+            </div>
+
+            <div id="signup-form" style="display: none;">
+                <form>
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email" id="email" >
+                    <input type="password" placeholder="Password" id="password" >
+                    <button type="submit">Sign Up</button>
+                </form>
+                 <div class="or-separator"><span>OR</span></div>
+                <button class="google-signin">
+                    <img src="googlelogo.webp" alt="Google Sign-In"> Sign up with Google
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="script.js" defer></script>
+</html>

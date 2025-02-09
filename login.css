@@ -1,0 +1,151 @@
+
+h2{
+    font-size: 2rem;
+
+}
+body {
+    font-family: "Prompt", serif;
+    background-image: url('bgimg.avif'); 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+    margin: 0; 
+    overflow: hidden; 
+}
+
+#login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#login-box {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 70px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); 
+    text-align: center;
+    width: 500px; 
+}
+
+#login-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#form-options {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#form-options button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ddd;
+    color: #333;
+    cursor: pointer;
+    border-radius: 5px;
+    margin: 0 5px;
+    transition: background-color 0.3s;
+    font-size: 1.1rem;
+}
+
+#form-options button.active {
+    background-color: rgb(95, 95, 95); 
+    color: white;
+}
+
+#form-options button:hover {
+    background-color: #ccc;
+}
+
+#signin-form, #signup-form {
+    display: block; 
+    font-size: 1.2rem;
+}
+
+#signin-form input, #signup-form input {
+    width: calc(100% - 22px); 
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+#signin-form button[type="submit"], #signup-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(95, 95, 95);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1.2rem;
+}
+
+#signin-form button[type="submit"]:hover, #signup-form button[type="submit"]:hover {
+    background-color: rgb(95, 95, 95);
+}
+
+.or-separator {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.or-separator span {
+  width: 100%;
+  text-align: center;
+  color: #888;
+}
+
+.or-separator::before,
+.or-separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.or-separator::before {
+  margin-right: 10px;
+}
+
+.or-separator::after {
+  margin-left: 10px;
+}
+
+
+
+.google-signin {
+    background-color: #fff; 
+    color: #4285F4; 
+    border: 2px solid #ddd;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    width:100%;
+    font-size: 1.2rem;
+}
+
+.google-signin img {
+    width: 30px;
+    height: 30px;
+    margin-right: 16px;
+}
+
+.google-signin:hover {
+    background-color: #f0f0f0;
+}
