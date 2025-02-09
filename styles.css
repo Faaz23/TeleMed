@@ -59,6 +59,8 @@
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
+    padding-bottom: 80px; /* Adjust this value as needed */
+    box-sizing: border-box; 
 }
 #link-boxes {
     display: flex;
@@ -217,6 +219,7 @@
 
 #footer {
     font-size: 1rem;
+    
 }
 @media (min-width: 768px) {
     #MainBody {
@@ -280,6 +283,7 @@
     #footer {
         font-size: 1.2rem;
     }
+    
 }
 
 
