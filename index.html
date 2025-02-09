@@ -1,39 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Telemed</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width , initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        
-        <section id="Navbar">
-        
-        <ul id="navbar">
-            <a href=telelogo.png id="logo"><img src="telelogo.png" onclick="Home"></a>
-            <a><li>Home</li></a>
-            <a><li>Book Appointment</li></a>
-            <a><li>Upload Data</li></a>
-            <a><li>Symptom analysis</li></a>
-        </ul>
-        </section>
-        <a href="https://meet.google.com/your-meeting-code" target="_blank">
-            <button>Join Video Conference</button>
-          </a>
-         
-          <section id="footer">
-            <footer>
-                <script type="text/javascript" async>
-                    (function(d,s){
-                    var l=d.createElement(s),e=d.getElementsByTagName(s)[0];
-                    l.async=true;l.type='text/javascript';
-                    l.src='https://app.letsconnect.at/embed.js';
-                    l.id='Skj9lLMnbrq74Jw4Yzid';
-                    e.parentNode.insertBefore(l,e);})(document,'script');</script>
-            </footer>
-          </section>
+<head>
+    <title>Telemed</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@200..800&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Russo+One&family=Yatra+One&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="script.js" defer></script> 
+</head>
+<body>
 
-    </body>
-    
+    <section id="Navbar">
+        <ul id="navbar">
+            <a href="telelogo.jpeg" id="logo"><img src="telelogo.jpeg" alt="Logo" ></a>
+            <a href="#Home" id="h"><li>Home</li></a>
+            <a href="#Book Appointment" id="b"><li>Book Appointment</li></a>
+            <a href="#Upload Data" id="u"><li>Upload Data</li></a>
+            <a href="#Symptom analysis" id="s"><li>Symptom analysis</li></a>
+            <a href="login.html"><i class="fa fa-user" style="font-size:36px"></i></a>
+        </ul>
+    </section>
+
+    <section id="MainBody">
+        <section id="link-boxes">
+            <div class="link-box" id="upload-box">
+                <a href="#" onclick="toggleUploadFields()">Upload Data</a>
+            </div>
+            <div class="link-box">
+                <a href="#">Book Appointment</a>
+            </div>
+            <div class="link-box">
+                <a href="#">Call Doctors</a>
+            </div>
+        </section>
+
+        <section id="upload-fields" style="display: none;">
+            <div class="field-container">
+                <label for="body-temp">Temperature(°C):</label>
+                <input type="text" id="body-temp" name="body-temp">
+            </div>
+            <div class="field-container">
+                <label for="weight">Current Weight:</label>
+                <input type="text" id="weight" name="weight">
+            </div>
+            <!--<div class="field-container">
+                <label for="pulse">Pulse Level:</label>
+                <input type="text" id="pulse" name="pulse">
+            </div>-->
+            <div class="field-container">
+                <label for="oxygen">Oxygen Level:</label>
+                <input type="text" id="oxygen" name="oxygen">
+            </div>
+            <div class="field-container">
+                <label for="blood-pressure">Blood Pressure:</label>
+                <input type="text" id="blood-pressure" name="blood-pressure">
+            </div>
+            <button type="submit">Submit</button>
+
+        </section>
+    </section>
+
+    <section id="footer">
+        <footer>
+            
+            <script type="text/javascript" async>
+                (function(d, s) {
+                    var l = d.createElement(s),
+                        e = d.getElementsByTagName(s)[0];
+                    l.async = true;
+                    l.type = 'text/javascript';
+                    l.src = 'https://app.letsconnect.at/embed.js';
+                    l.id = 'Skj9lLMnbrq74Jw4Yzid';
+                    e.parentNode.insertBefore(l, e);
+                })(document, 'script');
+            </script>
+        </footer>
+    </section>
+
+</body>
 </html>
