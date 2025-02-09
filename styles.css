@@ -377,4 +377,51 @@
     #u, #b, #s, #h {
         display: none;
     }
+
+}
+footer
+{
+    display: flex;
+    margin:auto;
+    justify-content: space-evenly;
+    background-color: rgb(226, 226, 226);
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 8px;
+    margin-top: -50px;
+}
+.twitter
+{
+    text-decoration: none;
+}
+.twitter::before
+{
+    text-decoration: none;
+    content: "𝕏";
+    font-size: 20px;
+}
+footer a { /* Or a more specific selector if needed */
+    text-decoration: none;
+}
+#ins, #fb, #ws,#twi
+{
+    color:rgb(67, 67, 67);
+}
+#ins:hover
+{
+    color:orange;
+}
+#fb:hover
+{
+    color:blue;
+}
+#ws:hover
+{
+    color:rgb(0, 128, 4);
+}
+#twi:hover
+{
+    color:#333;
 }
