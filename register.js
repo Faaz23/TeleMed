@@ -24,7 +24,7 @@ submit.addEventListener("click", function (event) {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      localStorage.setItem('userEmail', user.email); // Store email
+      localStorage.setItem('userEmail', user.email); 
       alert("Creating Account...");
       console.log("User created:", user);
       window.location.href = "index.html";
@@ -48,7 +48,7 @@ googlesignin.addEventListener("click", function () {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      localStorage.setItem('userEmail', user.email); // Store email
+      localStorage.setItem('userEmail', user.email); 
       alert("Google Sign-in successful!");
       console.log("Google Sign-in:", user);
       window.location.href = "index.html"; 
