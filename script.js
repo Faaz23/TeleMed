@@ -85,7 +85,7 @@ function submitForm(e) {
     var oxygen = getElementVal('oxygen');
     var bloodPressure = getElementVal('blood-pressure');
 
-    console.log("Temperature:", temperature); // Log individual values
+    console.log("Temperature:", temperature);
     console.log("Weight:", weight);
     console.log("Oxygen:", oxygen);
     console.log("Blood Pressure:", bloodPressure);
