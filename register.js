@@ -82,7 +82,3 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-import { Client } from 'appwrite';
-
-const client = new Client();
-client.setProject('67c13e8e000a54262567');
