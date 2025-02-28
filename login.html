@@ -4,25 +4,27 @@
     <title>Telemed - Sign In/Up</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="login.css"> </head>
+    <link rel="stylesheet" href="login.css"> 
+    <script type="module" src="register.js" defer></script>
+</head>
 <body>
-
+    
     <section id="login-container">
         <div id="login-box">
             <h2>Welcome to Telemed</h2>
             <div id="form-options">
-                <button id="signin-btn" class="active">Sign In</button>
-                <button id="signup-btn">Sign Up</button>
+                <button id="signin-btn" class="active">Sign up</button>
+                <button id="signup-btn">Sign In</button>
             </div>
 
             <div id="signin-form">
                 <form>
                     <input type="email" placeholder="Email" id="email" >
                     <input type="password" placeholder="Password" id="password" >
-                    <button type="submit">Sign In</button>
+                    <button type="submit" id="submit">Sign up</button>
                 </form>
                 <div class="or-separator"><span>OR</span></div>
-                <button class="google-signin">
+                <button id="googlesignin">
                     <img src="googlelogo.webp" alt="Google Sign-In"> Sign in with Google
                 </button>
             </div>
@@ -35,12 +37,11 @@
                     <button type="submit">Sign Up</button>
                 </form>
                  <div class="or-separator"><span>OR</span></div>
-                <button class="google-signin">
+                <button id="googlesignin">
                     <img src="googlelogo.webp" alt="Google Sign-In"> Sign up with Google
                 </button>
             </div>
         </div>
     </section>
 
-    <script type="module" src="script.js" defer></script>
 </html>
