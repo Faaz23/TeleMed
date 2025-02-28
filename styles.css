@@ -59,7 +59,7 @@
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
-    padding-bottom: 80px; /* Adjust this value as needed */
+    padding-bottom: 80px;
     box-sizing: border-box; 
 }
 #link-boxes {
@@ -406,7 +406,7 @@ footer
     content: "𝕏";
     font-size: 20px;
 }
-footer a { /* Or a more specific selector if needed */
+footer a { 
     text-decoration: none;
 }
 #ins, #fb, #ws,#twi
