@@ -227,7 +227,17 @@ body {
         top: 80px; 
         height: calc(100% - 80px);
     }
-
+    #logo {
+        display: flex;
+        width: 10%;
+        height: 90%; 
+    }
+    #logo img
+    {
+        display: flex;
+        width: 90%;
+        height: 90%; 
+    }
     #Navbar {
         padding: 20px;
         font-size: 1.3rem;
@@ -284,6 +294,7 @@ body {
 
     #footer {
         font-size: 1.2rem;
+    
     }
     
 }
@@ -301,6 +312,7 @@ body {
     .link-box a {
         font-size: 1rem;
     }
+    
 
 }
 #upload-fields {
@@ -350,7 +362,7 @@ body {
         flex-direction: row; 
         align-items: center;
     }
-
+    
     .field-container {
         flex-direction: row; 
         align-items: center;
@@ -383,7 +395,16 @@ body {
     #u, #b, #s, #h {
         display: none;
     }
-
+#logo
+{
+    width: 14.5%;
+}
+#MainBody {
+    margin-top: 0; 
+    padding-top: 0; 
+    top:0;
+    height:50%;
+}
 }
 footer
 {
@@ -474,3 +495,26 @@ footer a {
     align-items: center;
     margin-top:180px;
 }
+@media (max-width: 768px) {
+    #logo img {
+        width: auto; 
+        height:auto;
+        
+    }
+    #MainBody {
+        margin-top: 0;
+        padding-bottom: 0; 
+        top: 0;
+        height: auto; 
+        min-height: calc(100vh - 54px); 
+    }
+
+    footer {
+        margin-top: 0; 
+    }
+
+    footer {
+        padding: 7px 0; 
+    }
+}
+
