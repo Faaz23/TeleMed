@@ -41,6 +41,25 @@ submit.addEventListener("click", function (event) {
       console.error("Signup error:", errorCode, errorMessage);
     });
 });
+const googleSignin = document.getElementById('googlesignin');
+
+googleSignin.addEventListener("click", function () {
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      localStorage.setItem('userEmail', user.email);
+
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert("Google Sign-In Error: " + errorMessage);
+      console.error("Google Sign-In error:", errorCode, errorMessage);
+    });
+});
 
 
 document.addEventListener('DOMContentLoaded', function() {
