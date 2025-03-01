@@ -131,3 +131,49 @@ function submitForm(e) {
 const getElementVal = (id) => {
     return document.getElementById(id).value;
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const userEmail = localStorage.getItem('userEmail');
+    const userEmailDisplay = document.getElementById('user-email-display');
+    const userLogo = document.querySelector('#navbar a[href="login.html"]');
+    const logoutButton = document.getElementById('logout-button');
+
+    if (userEmail) {
+        const username = userEmail.split('@')[0];
+        const firstLetter = username.charAt(0).toUpperCase(); // Get the first letter
+
+        userEmailDisplay.textContent = firstLetter;
+        userEmailDisplay.style.color = 'white';
+        userEmailDisplay.style.backgroundColor = getRandomColor(); // Set random background color
+        userEmailDisplay.style.borderRadius = '50%'; // Make it a circle
+        userEmailDisplay.style.width = '30px'; // Set width and height
+        userEmailDisplay.style.height = '30px';
+        userEmailDisplay.style.display = 'flex'; // Use flexbox for centering
+        userEmailDisplay.style.justifyContent = 'center';
+        userEmailDisplay.style.alignItems = 'center';
+        userEmailDisplay.style.marginLeft = '10px';
+        userLogo.style.display = 'none';
+        logoutButton.style.display = 'inline-block';
+    } else {
+        userEmailDisplay.textContent = '';
+        userLogo.style.display = 'inline-block';
+        logoutButton.style.display = 'none';
+    }
+
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('userEmail');
+            window.location.reload();
+        });
+    }
+});
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
