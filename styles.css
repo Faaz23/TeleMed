@@ -5,7 +5,11 @@
     overflow-x: hidden;
     font-family: "Prompt",serif;
 }
-
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%; 
+}
 #Navbar {
     color: white;
     background-color: grey;
@@ -42,25 +46,16 @@
     max-width: 100%; 
     height: auto;  
 }
-#MainBody
-{
-    background-image: url('bgimg.avif');
-    
-}
 
 #MainBody {
-    position: fixed;
-    top: 80px; 
-    left: 0;
-    width: 100%;
-    height: calc(100% - 80px); 
-    background-image: url('bgimg.avif');
+    background-image: url('bgimg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: -1;
-    padding-bottom: 80px;
-    box-sizing: border-box; 
+    padding-bottom: 420px;
+    box-sizing: border-box;
+    top: 60px;
+    height: 100%;
 }
 #link-boxes {
     display: flex;
@@ -110,16 +105,26 @@
     background-color: #f8f8f8; 
     padding: 70px;
     border-radius: 10px;
-    gap:6px;
+    gap:1px;
     font-size: 1.2rem;
     opacity: 0; 
     transform: translateY(-20px); 
+    flex-direction: column;
+    
+  
 }
-
+#success-message {
+    text-align: center; 
+    margin-top: 10px; 
+    width: 100%;
+    flex-direction: column; 
+  }
 .field-container {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+    flex-direction: column;
+    
 }
 
 .field-container label {
@@ -154,16 +159,12 @@
 }
 
 
-#MainBody {
-    top: 60px;
-    height: calc(100% - 60px);
-
-}
 
 #Navbar {
    
     padding: 15px;
     font-size: 1rem;
+    flex-shrink: 0;
 }
 
 #navbar a {
@@ -262,6 +263,7 @@
         width: calc(3 * (400px + 20px) - 20px);
         padding: 70px;
         font-size: 1.2rem;
+        flex-direction: column; 
     }
 
     .field-container label {
@@ -395,6 +397,7 @@ footer
     width: 100%;
     padding: 8px;
     margin-top: -50px;
+    flex-shrink: 0;
 }
 .twitter
 {
@@ -428,4 +431,46 @@ footer a {
 #twi:hover
 {
     color:#333;
+}
+
+#nextpage
+{
+    background-color: black;
+    height: 100vh; 
+    width: 100%; 
+    color: white;
+    padding: 2px;
+    margin-top:-49px;
+
+}
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
+  
+  #text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+  }
+
+#chatbot
+{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:180px;
 }
