@@ -15,6 +15,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const submit = document.getElementById('submit');
+const successMessage = document.getElementById('success-message'); 
+
 submit.addEventListener("click", function (event) {
   event.preventDefault();
 
@@ -24,10 +26,13 @@ submit.addEventListener("click", function (event) {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      localStorage.setItem('userEmail', user.email); 
-      alert("Creating Account...");
-      console.log("User created:", user);
-      window.location.href = "index.html";
+      localStorage.setItem('userEmail', user.email);
+
+      successMessage.style.display = 'block';
+
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2500);
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -37,48 +42,4 @@ submit.addEventListener("click", function (event) {
     });
 });
 
-auth.languageCode = 'en';
-const provider = new GoogleAuthProvider();
-
-const googlesignin = document.getElementById('googlesignin');
-googlesignin.addEventListener("click", function () {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      // Google Sign-In successful
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      const user = result.user;
-      localStorage.setItem('userEmail', user.email); 
-      alert("Google Sign-in successful!");
-      console.log("Google Sign-in:", user);
-      window.location.href = "index.html"; 
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      const email = error.customData.email;
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      alert("Google Sign-in error: " + errorMessage);
-      console.error("Google Sign-in error:", errorCode, errorMessage);
-    });
-});
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  console.log("index.js loaded");
-  const userEmail = localStorage.getItem('userEmail');
-  if (userEmail) {
-      console.log("User email from storage:", userEmail);
-      const navbar = document.getElementById('navbar');
-      console.log("Navbar element:", navbar);
-      if (navbar) {
-          const userDisplay = document.createElement('span');
-          userDisplay.textContent = userEmail;
-          userDisplay.style.color = "white";
-          navbar.appendChild(userDisplay);
-      }
-  }
-});
-
+//peace
