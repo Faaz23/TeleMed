@@ -42,4 +42,16 @@ submit.addEventListener("click", function (event) {
     });
 });
 
+
+document.addEventListener('DOMContentLoaded', function() {
+  const backButton = document.getElementById('back-button');
+
+  if (backButton) {
+      backButton.addEventListener('click', () => {
+          window.location.href = 'index.html'; // Replace with your home page URL
+      });
+  }
+});
+
+
 //peace
