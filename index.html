@@ -12,10 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
     <script type="module" src="script.js" defer></script>
 </head>
 <body>
@@ -28,99 +27,64 @@
                 <a href="#Upload Data" id="u"><li>Upload Data</li></a>
                 <a href="#Symptom analysis" id="s"><li>Symptom analysis</li></a>
                 <a href="login.html"><i class="fa fa-user" style="font-size:36px"></i></a>
-                </ul>
+            </ul>
         </section>
-        
-    <section id="MainBody">
-        <section id="link-boxes">
-            <div class="link-box" id="upload-box">
-                <a href="#" onclick="toggleUploadFields()">Upload Data</a>
-            </div>
-            <div class="link-box">
-                <a href="#">Book Appointment</a>
-            </div>
-            <div class="link-box">
-                <a href="#" onclick="calldoctor()">Call Doctors</a>
-            </div>
+        <section id="MainBody">
+            <section id="link-boxes">
+                <div class="link-box" id="upload-box">
+                    <a href="#" onclick="toggleUploadFields()">Upload Data</a>
+                </div>
+                <div class="link-box">
+                    <a href="#">Book Appointment</a>
+                </div>
+                <div class="link-box">
+                    <a href="#" onclick="calldoctor()">Call Doctors</a>
+                </div>
+            </section>
+            <form id="PatientVitals">
+                <section id="upload-fields" style="display: none;">
+                    <div class="field-container">
+                        <label for="body-temp">Temperature(°F):</label>
+                        <input type="text" id="body-temp" name="body-temp">
+                    </div>
+                    <div class="field-container">
+                        <label for="weight">Current Weight:</label>
+                        <input type="text" id="weight" name="weight">
+                    </div>
+                    <div class="field-container">
+                        <label for="oxygen">Oxygen Level:</label>
+                        <input type="text" id="oxygen" name="oxygen">
+                    </div>
+                    <div class="field-container">
+                        <label for="blood-pressure">Blood Pressure:</label>
+                        <input type="text" id="blood-pressure" name="blood-pressure">
+                    </div>
+                    <button type="submit" id="submit">Submit</button><br>
+                    <div id="success-message" style="display:none; color:green;">Data Upload successful!</div>
+                </section>
+            </form>
         </section>
-        <form id="PatientVitals">
-        <section id="upload-fields" style="display: none;">
-            <div class="field-container">
-                <label for="body-temp">Temperature(°F):</label>
-                <input type="text" id="body-temp" name="body-temp">
-            </div>
-            <div class="field-container">
-                <label for="weight">Current Weight:</label>
-                <input type="text" id="weight" name="weight">
-            </div>
-            <!--<div class="field-container">
-                <label for="pulse">Pulse Level:</label>
-                <input type="text" id="pulse" name="pulse">
-            </div>-->
-            <div class="field-container">
-                <label for="oxygen">Oxygen Level:</label>
-                <input type="text" id="oxygen" name="oxygen">
-            </div>
-            <div class="field-container">
-                <label for="blood-pressure">Blood Pressure:</label>
-                <input type="text" id="blood-pressure" name="blood-pressure">
-            </div>
-            <button type="submit" id="submit">Submit</button>
+        <section id="footer">
+            <footer>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true" id="ins"></i></a>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true" id="fb"></i></a>
+                <a href="#"><i class="fa fa-whatsapp" aria-hidden="true" id="ws"></i></a>
+                <a href="#"><i class="twitter" aria-hidden="true" id="twi"></i></a>
+                <script type="text/javascript" async>
+                    (function(d, s) {
+                        var l = d.createElement(s),
+                            e = d.getElementsByTagName(s)[0];
+                        l.async = true;
+                        l.type = 'text/javascript';
+                        l.src = 'https://app.letsconnect.at/embed.js';
+                        l.id = 'Skj9lLMnbrq74Jw4Yzid';
+                        e.parentNode.insertBefore(l, e);
+                    })(document, 'script');
+                </script>
+            </footer>
         </section>
-    </form>
-    </section>
-    <section id="footer">
-        <footer>
-            
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true" id="ins"></i></a>
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true" id="fb"></i></a>
-            <a href="#"><i class="fa fa-whatsapp" aria-hidden="true" id="ws"></i></a>
-            <a href="#"><i class="twitter" aria-hidden="true" id="twi"></i></a>
-            <script type="text/javascript" async>
-                (function(d, s) {
-                    var l = d.createElement(s),
-                        e = d.getElementsByTagName(s)[0];
-                    l.async = true;
-                    l.type = 'text/javascript';
-                    l.src = 'https://app.letsconnect.at/embed.js';
-                    l.id = 'Skj9lLMnbrq74Jw4Yzid';
-                    e.parentNode.insertBefore(l, e);
-                })(document, 'script');
-            </script>
-        </footer>
-    </section>
-<!--
-<section id="nextpage">
-  <div id="chatbot">
-    <iframe
-    allow="microphone;"
-    width="50%"
-    height="500px"
-    src="https://console.dialogflow.com/api-client/demo/embedded/115875be-11f1-45d1-96e1-0f6a9729cfd7">
-</iframe>
-  </div>
-</section>
--->
-<section id="footer">
-    <footer>
-        
-        <a href="#"><i class="fa fa-instagram" aria-hidden="true" id="ins"></i></a>
-        <a href="#"><i class="fa fa-facebook" aria-hidden="true" id="fb"></i></a>
-        <a href="#"><i class="fa fa-whatsapp" aria-hidden="true" id="ws"></i></a>
-        <a href="#"><i class="twitter" aria-hidden="true" id="twi"></i></a>
-        <script type="text/javascript" async>
-            (function(d, s) {
-                var l = d.createElement(s),
-                    e = d.getElementsByTagName(s)[0];
-                l.async = true;
-                l.type = 'text/javascript';
-                l.src = 'https://app.letsconnect.at/embed.js';
-                l.id = 'Skj9lLMnbrq74Jw4Yzid';
-                e.parentNode.insertBefore(l, e);
-            })(document, 'script');
-        </script>
-    </footer>
-</section>
-</div>
+    
+      
+    </div>
 </body>
 </html>
