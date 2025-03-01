@@ -559,4 +559,26 @@ footer a {
 }
 
 
+#user-dropdown {
+    position: absolute;
+    top: 60px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
+    z-index: 10;
+}
 
+#user-dropdown p {
+    margin-bottom: 5px;
+}
+
+#user-dropdown button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
