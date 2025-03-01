@@ -136,36 +136,49 @@ const getElementVal = (id) => {
 document.addEventListener('DOMContentLoaded', function() {
     const userEmail = localStorage.getItem('userEmail');
     const userEmailDisplay = document.getElementById('user-email-display');
-    const userLogo = document.querySelector('#navbar a[href="login.html"]');
-    const logoutButton = document.getElementById('logout-button');
+    const userLogo = document.querySelector('#userlogo').parentElement;
+    const navbar = document.getElementById('navbar');
+
+    // Create dropdown menu
+    const dropdown = document.createElement('div');
+    dropdown.id = 'user-dropdown';
+    const emailParagraph = document.createElement('p');
+    const logoutButton = document.createElement('button');
+    logoutButton.textContent = 'Logout';
+    dropdown.appendChild(emailParagraph);
+    dropdown.appendChild(logoutButton);
+    document.body.appendChild(dropdown);
 
     if (userEmail) {
         const username = userEmail.split('@')[0];
-        const firstLetter = username.charAt(0).toUpperCase(); // Get the first letter
+        const firstLetter = username.charAt(0).toUpperCase();
 
         userEmailDisplay.textContent = firstLetter;
         userEmailDisplay.style.color = 'white';
-        userEmailDisplay.style.backgroundColor = getRandomColor(); // Set random background color
-        userEmailDisplay.style.borderRadius = '50%'; // Make it a circle
-        userEmailDisplay.style.width = '30px'; // Set width and height
+        userEmailDisplay.style.backgroundColor = getRandomColor();
+        userEmailDisplay.style.borderRadius = '50%';
+        userEmailDisplay.style.width = '30px';
         userEmailDisplay.style.height = '30px';
-        userEmailDisplay.style.display = 'flex'; // Use flexbox for centering
+        userEmailDisplay.style.display = 'flex';
         userEmailDisplay.style.justifyContent = 'center';
         userEmailDisplay.style.alignItems = 'center';
         userEmailDisplay.style.marginLeft = '10px';
         userLogo.style.display = 'none';
-        logoutButton.style.display = 'inline-block';
-    } else {
-        userEmailDisplay.textContent = '';
-        userLogo.style.display = 'inline-block';
-        logoutButton.style.display = 'none';
-    }
 
-    if (logoutButton) {
+        // Click event to toggle dropdown
+        userEmailDisplay.addEventListener('click', () => {
+            emailParagraph.textContent = userEmail;
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Logout functionality
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('userEmail');
             window.location.reload();
         });
+    } else {
+        userEmailDisplay.textContent = '';
+        userLogo.style.display = 'inline-block';
     }
 });
 
