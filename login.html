@@ -8,7 +8,6 @@
     <script type="module" src="register.js" defer></script>
 </head>
 <body>
-    
     <section id="login-container">
         <div id="login-box">
             <h2>Welcome to Telemed</h2>
@@ -27,14 +26,14 @@
                 <button id="googlesignin">
                     <img src="googlelogo.webp" alt="Google Sign-In"> Sign in with Google
                 </button>
-            </div>
+                <div id="success-message" style="display:none; color:green;">Thank you for signing up! Please upload your vital information.</div> </div>
 
             <div id="signup-form" style="display: none;">
                 <form>
                     <input type="text" placeholder="Full Name" required>
                     <input type="email" placeholder="Email" id="email" >
                     <input type="password" placeholder="Password" id="password" >
-                    <button type="submit">Sign Up</button>
+                    <button type="submit">Sign In</button>
                 </form>
                  <div class="or-separator"><span>OR</span></div>
                 <button id="googlesignin">
@@ -43,5 +42,5 @@
             </div>
         </div>
     </section>
-
+</body>
 </html>
