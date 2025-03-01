@@ -1,4 +1,3 @@
-
 const uploadBox = document.getElementById('upload-box');
 const uploadFields = document.getElementById('upload-fields');
 
@@ -75,15 +74,23 @@ firebase.initializeApp(firebaseConfig);
 
 var PatientVitalsDB = firebase.database().ref('PatientVitals');
 
-document.getElementById('PatientVitals').addEventListener('submit', submitForm)
+document.getElementById('PatientVitals').addEventListener('submit', submitForm);
 
 function submitForm(e) {
     e.preventDefault();
+
+    const successMessage = document.getElementById('success-message');
+    
 
     var temperature = getElementVal('body-temp');
     var weight = getElementVal('weight');
     var oxygen = getElementVal('oxygen');
     var bloodPressure = getElementVal('blood-pressure');
+
+    if (!temperature || !weight || !oxygen || !bloodPressure) {
+        alert("Please fill in all the fields.");
+        return; 
+    }
 
     console.log("Temperature:", temperature);
     console.log("Weight:", weight);
@@ -98,6 +105,17 @@ function submitForm(e) {
     })
     .then(() => {
         console.log('Data saved successfully!');
+
+        successMessage.style.display = 'block';
+
+        document.getElementById('body-temp').value = '';
+        document.getElementById('weight').value = '';
+        document.getElementById('oxygen').value = '';
+        document.getElementById('blood-pressure').value = '';
+
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 3000);
     })
     .catch((error) => {
         console.error('Error saving data:', error);
@@ -105,6 +123,7 @@ function submitForm(e) {
 
     console.log(temperature, weight, oxygen, bloodPressure);
 }
+
 const getElementVal = (id) => {
     return document.getElementById(id).value;
 }
