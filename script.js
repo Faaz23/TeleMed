@@ -80,7 +80,9 @@ function submitForm(e) {
     e.preventDefault();
 
     const successMessage = document.getElementById('success-message');
-    
+    const uploadFields = document.getElementById('upload-fields');
+    const fieldContainers = document.querySelectorAll('.field-container'); 
+    const submitButton = document.querySelector('#upload-fields button[type="submit"]');
 
     var temperature = getElementVal('body-temp');
     var weight = getElementVal('weight');
@@ -89,7 +91,7 @@ function submitForm(e) {
 
     if (!temperature || !weight || !oxygen || !bloodPressure) {
         alert("Please fill in all the fields.");
-        return; 
+        return;
     }
 
     console.log("Temperature:", temperature);
@@ -105,20 +107,29 @@ function submitForm(e) {
         weight: weight,
         oxygen: oxygen,
         bloodPressure: bloodPressure,
-        
     })
     .then(() => {
         console.log('Data saved successfully!');
 
-        successMessage.style.display = 'block';
+        fieldContainers.forEach(container => {
+            container.style.display = 'none';
+        });
+        submitButton.style.display = 'none';
 
-        document.getElementById('body-temp').value = '';
-        document.getElementById('weight').value = '';
-        document.getElementById('oxygen').value = '';
-        document.getElementById('blood-pressure').value = '';
+        successMessage.style.display = 'block';
+        successMessage.style.textAlign = 'center';
 
         setTimeout(() => {
+            document.getElementById('body-temp').value = '';
+            document.getElementById('weight').value = '';
+            document.getElementById('oxygen').value = '';
+            document.getElementById('blood-pressure').value = '';
+
             successMessage.style.display = 'none';
+            fieldContainers.forEach(container => {
+                container.style.display = 'flex';
+            });
+            submitButton.style.display = 'inline-block';
         }, 3000);
     })
     .catch((error) => {
@@ -139,7 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const userLogo = document.querySelector('#userlogo').parentElement;
     const navbar = document.getElementById('navbar');
 
-    // Create dropdown menu
     const dropdown = document.createElement('div');
     dropdown.id = 'user-dropdown';
     const emailParagraph = document.createElement('p');
@@ -165,13 +175,11 @@ document.addEventListener('DOMContentLoaded', function() {
         userEmailDisplay.style.marginLeft = '10px';
         userLogo.style.display = 'none';
 
-        // Click event to toggle dropdown
         userEmailDisplay.addEventListener('click', () => {
             emailParagraph.textContent = userEmail;
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         });
 
-        // Logout functionality
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('userEmail');
             window.location.reload();
