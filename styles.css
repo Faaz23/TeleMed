@@ -51,7 +51,6 @@ body {
 }
 
 #MainBody {
-    background-color:red;
     background-image: url('bgimg.jpg');
     background-size: cover;
     background-position: center;
