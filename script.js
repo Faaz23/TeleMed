@@ -97,11 +97,15 @@ function submitForm(e) {
     console.log("Oxygen:", oxygen);
     console.log("Blood Pressure:", bloodPressure);
 
+    var userEmail = localStorage.getItem('userEmail');
+
     PatientVitalsDB.push({
+        userEmail: userEmail,
         temperature: temperature,
         weight: weight,
         oxygen: oxygen,
-        bloodPressure: bloodPressure
+        bloodPressure: bloodPressure,
+        
     })
     .then(() => {
         console.log('Data saved successfully!');
