@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   if (backButton) {
       backButton.addEventListener('click', () => {
-          window.location.href = 'index.html'; // Replace with your home page URL
+          window.location.href = 'index.html';
       });
   }
 });
