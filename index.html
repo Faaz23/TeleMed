@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@200..800&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Russo+One&family=Yatra+One&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
@@ -24,10 +23,14 @@
                 <a href="telelogo.jpeg" id="logo"><img src="telelogo.jpeg" alt="Logo"></a>
                 <a href="#Home" id="h"><li>Home</li></a>
                 <a href="#Book Appointment" id="b"><li>Book Appointment</li></a>
-                <a href="#Upload Data" id="u"><li>Upload Data</li></a>
-                <a href="#Symptom analysis" id="s"><li>Symptom analysis</li></a>
+                <a href="#" id="navbar-upload-link" onclick="toggleUploadFields()"><li>Upload Data</li></a>               
+                <a href="chatbot.html" onclick="chatbot.html" id="s"><li>Symptom analysis</li></a>
+                <a href="login.html">
+                    <i class="fa fa-user" style="font-size:36px" id="userlogo"></i>
+                    <span id="login-word">Login</span>
+                </a>
                 <span id="user-email-display"></span>
-                <a href="login.html"><i class="fa fa-user" style="font-size:36px" id="userlogo"></i></a>
+                
             </ul>
         </section>
         </div>
@@ -37,57 +40,62 @@
                     <a href="#" onclick="toggleUploadFields()">Upload Data</a>
                 </div>
                 <div class="link-box">
-                    <a href="#">Book Appointment</a>
+                    <a href="#" onclick="toggleUploadFields()">Book Appointment</a>
                 </div>
                 <div class="link-box">
-                    <a href="#" onclick="calldoctor()">Call Doctors</a>
+                    <a href="#" onclick="toggleUploadFields()">Call Doctors</a>
                 </div>
             </section>
             <form id="PatientVitals">
                 <section id="upload-fields" style="display: none;">
                     <div class="field-container">
                         <label for="body-temp">Temperature(°F):</label>
-                        <input type="text" id="body-temp" name="body-temp">
+                        <input type="text" id="body-temp" name="body-temp" required>
                     </div>
                     <div class="field-container">
                         <label for="weight">Current Weight:</label>
-                        <input type="text" id="weight" name="weight">
+                        <input type="text" id="weight" name="weight" required>
                     </div>
                     <div class="field-container">
                         <label for="oxygen">Oxygen Level:</label>
-                        <input type="text" id="oxygen" name="oxygen">
+                        <input type="text" id="oxygen" name="oxygen" required>
                     </div>
                     <div class="field-container">
                         <label for="blood-pressure">Blood Pressure:</label>
-                        <input type="text" id="blood-pressure" name="blood-pressure">
+                        <input type="text" id="blood-pressure" name="blood-pressure" required>
                     </div>
                     <button type="submit" id="submit">Submit</button><br>
                     <div id="success-message" style="display:none; color:green;">Data Upload successful!</div>
                 </section>
             </form>
         </section>
+<!--
+        <section id="chatbot-section">
+            <div class="chatbot-text">
+                <h2>Have Questions? Talk to Chatbot</h2>
+            </div>
+            <div class="chatbot-iframe">
+                <iframe width="640" height="480" src="https://embed.wotnot.io/GYA99tQRCMn710291824859229GPQxH4/bot/82Z8pwUMoxMM103350764613Vb9LWQfA?display_header=false&history_retention=false" frameborder="0"></iframe>
+            </div>
+        </section>
+-->
         <section id="footer">
             <footer>
                 <a href="#"><i class="fa fa-instagram" aria-hidden="true" id="ins"></i></a>
                 <a href="#"><i class="fa fa-facebook" aria-hidden="true" id="fb"></i></a>
                 <a href="#"><i class="fa fa-whatsapp" aria-hidden="true" id="ws"></i></a>
                 <a href="#"><i class="twitter" aria-hidden="true" id="twi"></i></a>
-                <iframe width="640" height="480" src="https://embed.wotnot.io/GYA99tQRCMn710291824859229GPQxH4/bot/82Z8pwUMoxMM103350764613Vb9LWQfA?display_header=false&history_retention=false" frameborder="0"></iframe>
                 <script type="text/javascript" async>
-                    (function(d, s) {
-                        var l = d.createElement(s),
-                            e = d.getElementsByTagName(s)[0];
-                        l.async = true;
-                        l.type = 'text/javascript';
-                        l.src = 'https://app.letsconnect.at/embed.js';
-                        l.id = 'Skj9lLMnbrq74Jw4Yzid';
-                        e.parentNode.insertBefore(l, e);
-                    })(document, 'script');
+                    (function(d,s){
+                    var l=d.createElement(s),e=d.getElementsByTagName(s)[0];
+                    l.async=true;l.type='text/javascript';
+                    l.src='https://app.letsconnect.at/embed.js';
+                    l.id='r7AeDu3JcZlSxtgxvxlD';
+                    e.parentNode.insertBefore(l,e);})(document,'script');
                 </script>
+                
             </footer>
+            
         </section>
-    
-      
-    </div>
 </body>
 </html>
