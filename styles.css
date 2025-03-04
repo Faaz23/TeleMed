@@ -1,38 +1,54 @@
+html {
+    scroll-behavior: smooth;
+    margin: 0;
+  }
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box; 
     overflow-x: hidden;
     font-family: "Prompt",serif;
+
 }
 body {
     margin: 0;
     padding: 0;
-    height: 100%; 
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
 }
 #Navbar {
     color: white;
-    background-color: grey;
+    /*background-color: rgba(128, 128, 128, 0.727);*/
+    background-color: rgba(128, 128, 128, 0.727); 
     padding: 20px;
     font-size: 1.3rem;
-
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height:10%;
+    overflow-y:hidden;
 }
 
 #navbar {
     display: flex;
     justify-content: space-between;
+    vertical-align: middle;
     align-items: center;
     cursor: pointer;
     color: white;
 }
+#navbar a i, #navbar a span { 
+    vertical-align:text-bottom;
+}
+
 
 #navbar a { 
     text-decoration: none; 
     color: white; 
     padding: 0 15px; 
+    
 }
 
 #navbar a:hover {
@@ -43,6 +59,7 @@ body {
     display: flex;
     width: 5%;
     height: auto; 
+    
 }
 
 #logo img {
@@ -55,10 +72,11 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding-bottom: 420px;
-    box-sizing: border-box;
     top: 60px;
-    height: 100%;
+    flex: 1;
+    min-height: 100%;
+    width: 100%;
+    
 }
 #link-boxes {
     display: flex;
@@ -91,13 +109,7 @@ body {
     cursor: pointer;
 }
 
-#footer {
-    
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    margin-top: 50px; 
-}
+
 
 #upload-fields {
     display: none; 
@@ -127,6 +139,7 @@ body {
     align-items: center;
     margin-bottom: 50px;
     flex-direction: column;
+    
     
 }
 
@@ -163,21 +176,9 @@ body {
 
 
 
-#Navbar {
-   
-    padding: 15px;
-    font-size: 1rem;
-    flex-shrink: 0;
-}
 
-#navbar a {
-    padding: 0 10px;
-    font-size: 1rem;
-}
 
-#logo {
-    width: 10%;
-}
+
 
 #link-boxes {
     flex-direction: column;
@@ -221,10 +222,7 @@ body {
     display: block;
 }
 
-#footer {
-    font-size: 1rem;
-    
-}
+
 @media (min-width: 768px) {
     #MainBody {
         top: 80px; 
@@ -297,9 +295,35 @@ body {
 
     #footer {
         font-size: 1.2rem;
+        bottom: 0;
+
     
     }
-    
+    #login-word {
+        animation: loginFadeScale 2s infinite ease-in-out;
+    }
+    #login-popup {
+        position: absolute;
+        top: 50px; 
+        right: 10px; 
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        display: none;
+        z-index: 10;
+        animation: popupAnimation 6s infinite;
+    }
+    @keyframes loginFadeScale {
+        0%, 100% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1); 
+        }
+    }
 }
 
 
@@ -403,11 +427,11 @@ body {
     width: 14.5%;
 }
 #MainBody {
-    margin-top: 0; 
-    padding-top: 0; 
-    top:0;
-    height:50%;
-}
+        margin-top: 0;
+        padding-top: 0;
+        top: 0;
+        min-height: calc(100vh - 54px); 
+    }
 #userlogo
 {
     display: flex;
@@ -417,19 +441,17 @@ body {
 
 }
 }
-footer
-{
+footer {
     display: flex;
-    margin:auto;
+    margin: auto;
     justify-content: space-evenly;
     background-color: rgb(226, 226, 226);
     align-items: center;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     padding: 8px;
-    margin-top: -50px;
     flex-shrink: 0;
+    font-size: 1.2rem;
+
 }
 .twitter
 {
@@ -464,17 +486,7 @@ footer a {
 {
     color:#333;
 }
-
-#nextpage
-{
-    background-color: black;
-    height: 100vh; 
-    width: 100%; 
-    color: white;
-    padding: 2px;
-    margin-top:-49px;
-
-}
+/*
 #overlay {
     position: fixed;
     display: none;
@@ -488,7 +500,7 @@ footer a {
     z-index: 2;
     cursor: pointer;
   }
-  
+*/
   #text{
     position: absolute;
     top: 50%;
@@ -498,7 +510,7 @@ footer a {
     transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
   }
-
+/*
 #chatbot
 {
     display:flex;
@@ -506,7 +518,20 @@ footer a {
     align-items: center;
     margin-top:180px;
 }
+*/
 @media (max-width: 768px) {
+    #Navbar {
+        color: white;
+        background-color: grey;
+        padding: 20px;
+        font-size: 1.3rem;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height:9%;
+        overflow-y: hidden;
+    }
     #userlogo
     {
         display: flex;
@@ -519,10 +544,13 @@ footer a {
     }
     #MainBody {
         margin-top: 0;
-        padding-bottom: 0; 
+        padding-bottom: 0;
         top: 0;
-        height: auto; 
+        height: auto;
         min-height: calc(100vh - 54px); 
+        background-size: cover; 
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     footer {
@@ -532,36 +560,33 @@ footer a {
     footer {
         padding: 7px 0; 
     }
+    #login-word {
+        display: none;
+    }
+    #navbar-upload-link
+    {
+        display: none;
+    }
 }
 
-/* ... other styles ... */
-
-#dark-mode-toggle {
-    background-color: #333; /* Example background color */
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
 #logout-button {
-    background-color: transparent; /* Make it transparent */
+    background-color: transparent; 
     border: none;
-    color: white; /* Text color */
+    color: white;
     cursor: pointer;
     font-size: 1rem;
-    margin-left: 10px; /* Add some spacing */
+    margin-left: 10px; 
 }
 
 #logout-button:hover {
-    text-decoration: underline; /* Optional: Add underline on hover */
+    text-decoration: underline; 
 }
 
 
 #user-dropdown {
     position: absolute;
-    top: 60px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
+    top: 60px; 
+    right: 20px; 
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -579,5 +604,23 @@ footer a {
     border: 1px solid #ccc;
     padding: 5px 10px;
     border-radius: 3px;
+    cursor: pointer;
+}
+#user-dropdown button :hover
+{
+    cursor: pointer;
+    color:white;
+    background-color: black;
+}
+
+#login-label {
+    margin-left: 5px;
+    color: white; 
+    font-size: 1rem;
+}
+
+
+#user-email-display {
+    display: none;
     cursor: pointer;
 }
