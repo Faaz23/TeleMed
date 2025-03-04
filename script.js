@@ -1,35 +1,58 @@
 const uploadBox = document.getElementById('upload-box');
 const uploadFields = document.getElementById('upload-fields');
-
-uploadBox.addEventListener('click', function (event) {
-    uploadFields.style.display = 'flex';
-    event.preventDefault();
-});
+const navbarUploadLink = document.getElementById('navbar-upload-link');
 
 let isVisible = false;
+function checkLoginAndRedirect(event, redirectUrl) {
+    event.preventDefault();
+    const userEmail = localStorage.getItem('userEmail');
+    if (!userEmail) {
+        alert("Please sign in to proceed.");
+        return;
+    }
+    window.location.href = redirectUrl;
+}
 
-uploadBox.addEventListener('click', function (event) {
+document.addEventListener('DOMContentLoaded', function() {
+
+    const homeLink = document.getElementById('h');
+    const bookAppointmentLink = document.getElementById('b');
+    const symptomAnalysisLink = document.getElementById('s');
+
+    homeLink.addEventListener('click', (event) => {
+        checkLoginAndRedirect(event, "#Home");
+    });
+
+    bookAppointmentLink.addEventListener('click', (event) => {
+        checkLoginAndRedirect(event, "#Book Appointment");
+    });
+
+    symptomAnalysisLink.addEventListener('click', (event) => {
+        checkLoginAndRedirect(event, "#Symptom analysis");
+    });
+});
+function toggleUploadFields(event) {
     event.preventDefault();
 
+    const userEmail = localStorage.getItem('userEmail');
+    if (!userEmail) {
+        alert("Please sign in to proceed.");
+        return;
+    }
+/*
+    if (!userEmail) {
+        // User is not logged in
+        showLoginMessage();
+        return; // Prevent further execution
+    }
+*/
     isVisible = !isVisible;
 
     if (isVisible) {
         uploadFields.style.display = 'flex';
-    } else {
-        uploadFields.style.display = 'none';
-    }
-});
-
-
-uploadBox.addEventListener('click', function (event) {
-    event.preventDefault();
-
-    if (uploadFields.style.display === 'none') {
         uploadFields.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
         uploadFields.style.opacity = 0;
         uploadFields.style.transform = 'translateY(-20px)';
-
-        uploadFields.style.display = 'flex';
 
         setTimeout(() => {
             uploadFields.style.opacity = 1;
@@ -48,9 +71,44 @@ uploadBox.addEventListener('click', function (event) {
         setTimeout(() => {
             uploadFields.style.display = 'none';
         }, 500);
-
     }
-});
+}
+
+uploadBox.addEventListener('click', toggleUploadFields);
+navbarUploadLink.addEventListener('click', toggleUploadFields);
+
+/*
+function showLoginMessage() {
+    const overlay = document.createElement('div');
+    overlay.id = 'overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.display = 'block';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.backgroundColor = 'rgba(0,0,0,0.6)';
+    overlay.style.zIndex = 1000;
+    overlay.style.cursor = 'pointer';
+
+    const message = document.createElement('div');
+    message.id = 'login-message';
+    message.textContent = 'Please sign in to proceed!';
+    message.style.position = 'absolute';
+    message.style.top = '50%';
+    message.style.left = '50%';
+    message.style.transform = 'translate(-50%, -50%)';
+    message.style.color = 'white';
+    message.style.fontSize = '44px';
+
+    overlay.appendChild(message);
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', () => {
+        document.body.removeChild(overlay);
+    });
+}
+*/
 
 function on() {
     document.getElementById("overlay").style.display = "block";
@@ -179,7 +237,14 @@ document.addEventListener('DOMContentLoaded', function() {
             emailParagraph.textContent = userEmail;
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         });
+        document.addEventListener('click', (event) => {
+        const isClickInsideDropdown = dropdown.contains(event.target);
+        const isClickOnUserLogo = userEmailDisplay.contains(event.target);
 
+        if (!isClickInsideDropdown && !isClickOnUserLogo) {
+            dropdown.style.display = 'none';
+        }
+    });
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('userEmail');
             window.location.reload();
@@ -198,3 +263,11 @@ function getRandomColor() {
     }
     return color;
 }
+
+
+function calldoctor() {
+    alert('calldoctor() function called');
+   
+}
+
+
