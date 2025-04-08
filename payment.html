@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Payment</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="appointment_styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Changa:wght@200..800&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Russo+One&family=Yatra+One&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #payment-box {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 450px;
+            text-align: center;
+        }
+
+        .payment-option {
+            margin-bottom: 20px;
+
+        }
+
+        .payment-option button {
+            padding: 12px 25px;
+            background-color: grey;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Prompt', sans-serif;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .payment-option button:hover {
+            background-color: black;
+        }
+
+        h2 {
+            font-family: 'Prompt', sans-serif;
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        #pay-later-button {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        #pay-later-button:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="payment-box">
+        <h2>Appointment Fee</h2>
+        <p>Please pay the minimal appointment fee to confirm your booking.</p>
+
+        <div class="payment-option">
+            <button id="rzp-button1" class="btn btn-outline-dark btn-lg">
+                <i class="fas fa-money-bill"></i> Pay Now
+            </button>
+        </div>
+
+        <div class="payment-option">
+            <button id="pay-later-button">Pay Later</button>
+        </div>
+
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            "key": "rzp_test_8ubMYfo519C6Kz",
+            "amount": "10000",
+            "currency": "INR",
+            "description": "TeleMedicine Appointment Fee",
+            "image": "telelogo.jpeg",
+            "prefill": {
+                "email": "faaz3982@gmail.com",
+                "contact": +919789737199,
+            },
+            config: {
+                display: {
+                    blocks: {
+                        utib: {
+                            name: "Pay Using Axis Bank",
+                            instruments: [{
+                                method: "card",
+                                issuers: ["UTIB"]
+                            },
+                            {
+                                method: "netbanking",
+                                banks: ["UTIB"]
+                            },
+
+                            ]
+                        },
+                        other: {
+                            name: "Other Payment Methods",
+                            instruments: [{
+                                method: "card",
+                                issuers: ["ICIC"]
+                            },
+                            {
+                                method: 'netbanking',
+                            }
+
+                            ]
+                        },
+                        banks: {
+                            name: 'Pay via UPI',
+                            instruments: [
+                                {
+                                    method: 'upi'
+                                }
+                            ],
+                        },
+                    },
+
+                    sequence: ["block.utib", "block.other", "block.banks"],
+                    preferences: {
+                        show_default_blocks: true
+                    }
+                }
+            },
+
+            "handler": function (response) {
+                alert("Payment ID: " + response.razorpay_payment_id);
+            },
+            "modal": {
+                "ondismiss": function () {
+                    if (confirm("Are you sure, you want to close the form?")) {
+                        console.log("Checkout form closed by the user");
+                    } else {
+                        console.log("Complete the Payment")
+                    }
+
+                }
+            }
+
+        };
+
+        var rzp1 = new Razorpay(options);
+        document.getElementById('rzp-button1').onclick = function (e) {
+            rzp1.open();
+            e.preventDefault();
+        }
+
+        document.getElementById('pay-later-button').addEventListener('click', function () {
+            alert('You have chosen to pay later. Your appointment is provisionally booked.');
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+
+</html>

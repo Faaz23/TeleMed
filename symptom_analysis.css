@@ -1,0 +1,95 @@
+body {
+    font-family: 'Prompt', sans-serif;
+    background-image: url('bgimg.avif');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+#logo {
+    display: flex;
+    width: 5%;
+    height: auto;
+}
+
+#logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+#container {
+    width: 60%;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+#symptomForm {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: calc(100% - 22px);
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1.1em;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: rgb(95, 95, 95);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1.1em;
+}
+
+button:hover {
+    background-color: black;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1.1em;
+}
+
+#homeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f0f0f0;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+#homeButton i {
+    font-size: 1.2em;
+}
