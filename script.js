@@ -13,11 +13,21 @@ function checkLoginAndRedirect(event, redirectUrl) {
     window.location.href = redirectUrl;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     const homeLink = document.getElementById('h');
     const bookAppointmentLink = document.getElementById('b');
     const symptomAnalysisLink = document.getElementById('s');
+    const bookAppointmentBox = document.getElementById('book-appointment-box');
+    const bookAppointmentNavbarLink = document.getElementById('b');
+
+    if (bookAppointmentBox) {
+        bookAppointmentBox.addEventListener('click', toggleBookAppointmentFields);
+    }
+
+    if (bookAppointmentNavbarLink) {
+        bookAppointmentNavbarLink.addEventListener('click', checkLoginAndToggleAppointment);
+    }
 
     homeLink.addEventListener('click', (event) => {
         checkLoginAndRedirect(event, "#Home");
@@ -39,13 +49,13 @@ function toggleUploadFields(event) {
         alert("Please sign in to proceed.");
         return;
     }
-/*
-    if (!userEmail) {
-        // User is not logged in
-        showLoginMessage();
-        return; // Prevent further execution
-    }
-*/
+    /*
+        if (!userEmail) {
+            // User is not logged in
+            showLoginMessage();
+            return; // Prevent further execution
+        }
+    */
     isVisible = !isVisible;
 
     if (isVisible) {
@@ -139,7 +149,7 @@ function submitForm(e) {
 
     const successMessage = document.getElementById('success-message');
     const uploadFields = document.getElementById('upload-fields');
-    const fieldContainers = document.querySelectorAll('.field-container'); 
+    const fieldContainers = document.querySelectorAll('.field-container');
     const submitButton = document.querySelector('#upload-fields button[type="submit"]');
 
     var temperature = getElementVal('body-temp');
@@ -166,33 +176,33 @@ function submitForm(e) {
         oxygen: oxygen,
         bloodPressure: bloodPressure,
     })
-    .then(() => {
-        console.log('Data saved successfully!');
+        .then(() => {
+            console.log('Data saved successfully!');
 
-        fieldContainers.forEach(container => {
-            container.style.display = 'none';
-        });
-        submitButton.style.display = 'none';
-
-        successMessage.style.display = 'block';
-        successMessage.style.textAlign = 'center';
-
-        setTimeout(() => {
-            document.getElementById('body-temp').value = '';
-            document.getElementById('weight').value = '';
-            document.getElementById('oxygen').value = '';
-            document.getElementById('blood-pressure').value = '';
-
-            successMessage.style.display = 'none';
             fieldContainers.forEach(container => {
-                container.style.display = 'flex';
+                container.style.display = 'none';
             });
-            submitButton.style.display = 'inline-block';
-        }, 3000);
-    })
-    .catch((error) => {
-        console.error('Error saving data:', error);
-    });
+            submitButton.style.display = 'none';
+
+            successMessage.style.display = 'block';
+            successMessage.style.textAlign = 'center';
+
+            setTimeout(() => {
+                document.getElementById('body-temp').value = '';
+                document.getElementById('weight').value = '';
+                document.getElementById('oxygen').value = '';
+                document.getElementById('blood-pressure').value = '';
+
+                successMessage.style.display = 'none';
+                fieldContainers.forEach(container => {
+                    container.style.display = 'flex';
+                });
+                submitButton.style.display = 'inline-block';
+            }, 3000);
+        })
+        .catch((error) => {
+            console.error('Error saving data:', error);
+        });
 
     console.log(temperature, weight, oxygen, bloodPressure);
 }
@@ -202,7 +212,7 @@ const getElementVal = (id) => {
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const userEmail = localStorage.getItem('userEmail');
     const userEmailDisplay = document.getElementById('user-email-display');
     const userLogo = document.querySelector('#userlogo').parentElement;
@@ -238,13 +248,13 @@ document.addEventListener('DOMContentLoaded', function() {
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         });
         document.addEventListener('click', (event) => {
-        const isClickInsideDropdown = dropdown.contains(event.target);
-        const isClickOnUserLogo = userEmailDisplay.contains(event.target);
+            const isClickInsideDropdown = dropdown.contains(event.target);
+            const isClickOnUserLogo = userEmailDisplay.contains(event.target);
 
-        if (!isClickInsideDropdown && !isClickOnUserLogo) {
-            dropdown.style.display = 'none';
-        }
-    });
+            if (!isClickInsideDropdown && !isClickOnUserLogo) {
+                dropdown.style.display = 'none';
+            }
+        });
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('userEmail');
             window.location.reload();
@@ -267,7 +277,71 @@ function getRandomColor() {
 
 function calldoctor() {
     alert('calldoctor() function called');
-   
+
 }
 
+
+let isBookAppointmentVisible = false;
+
+function checkLoginAndToggleAppointment(event) {
+    event.preventDefault();
+    const userEmail = localStorage.getItem('userEmail');
+    if (!userEmail) {
+        alert("Please sign in to proceed.");
+        return;
+    }
+    toggleBookAppointmentFields();
+}
+
+function toggleBookAppointmentFields() {
+    const userEmail = localStorage.getItem('userEmail');
+    if (!userEmail) {
+        alert("Please sign in to proceed.");
+        return;
+    }
+
+    isBookAppointmentVisible = !isBookAppointmentVisible;
+    const bookAppointmentFields = document.getElementById('book-appointment-fields');
+
+    if (isBookAppointmentVisible) {
+        bookAppointmentFields.style.display = 'block';
+        bookAppointmentFields.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
+        bookAppointmentFields.style.opacity = 0;
+        bookAppointmentFields.style.transform = 'translateY(-20px)';
+
+        setTimeout(() => {
+            bookAppointmentFields.style.opacity = 1;
+            bookAppointmentFields.style.transform = 'translateY(0)';
+        }, 10);
+    } else {
+        bookAppointmentFields.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
+        bookAppointmentFields.style.opacity = 1;
+        bookAppointmentFields.style.transform = 'translateY(0)';
+
+        setTimeout(() => {
+            bookAppointmentFields.style.opacity = 0;
+            bookAppointmentFields.style.transform = 'translateY(-20px)';
+        }, 10);
+
+        setTimeout(() => {
+            bookAppointmentFields.style.display = 'none'
+        }, 500);
+    }
+}
+
+function navigateToNewUser() {
+    window.location.href = "new_user_appointment.html";
+}
+
+function navigateToExistingUser() {
+    window.location.href = "existing_user_appointment.html";
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const bookAppointmentBox = document.getElementById('book-appointment-box');
+    if (bookAppointmentBox) {
+        bookAppointmentBox.addEventListener('click', toggleBookAppointmentFields);
+    }
+});
 
