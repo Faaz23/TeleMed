@@ -1,6 +1,7 @@
 const uploadBox = document.getElementById('upload-box');
 const uploadFields = document.getElementById('upload-fields');
 const navbarUploadLink = document.getElementById('navbar-upload-link');
+const callDoctorsBox = document.getElementById('call-doctors-box');
 
 let isVisible = false;
 let isBookAppointmentVisible = false;
@@ -108,14 +109,6 @@ function navigateToNewUser() {
 
 function navigateToExistingUser() {
     window.location.href = "existing_user_appointment.html";
-}
-
-function on() {
-    document.getElementById("overlay").style.display = "block";
-}
-
-function off() {
-    document.getElementById("overlay").style.display = "none";
 }
 
 function calldoctor() {
@@ -294,4 +287,5 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('PatientVitals').addEventListener('submit', submitForm);
     uploadBox.addEventListener('click', toggleUploadFields);
     navbarUploadLink.addEventListener('click', toggleUploadFields);
+    callDoctorsBox.addEventListener('click', showQRCode);
 });
