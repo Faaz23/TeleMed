@@ -345,3 +345,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+function toggleUploadFields() {
+    const uploadFields = document.getElementById('upload-fields');
+    if (uploadFields.style.display === 'none') {
+        uploadFields.style.display = 'block';
+    } else {
+        uploadFields.style.display = 'none';
+    }
+}
+
+function toggleBookAppointmentFields() {
+    const bookAppointmentFields = document.getElementById('book-appointment-fields');
+    if (bookAppointmentFields.style.display === 'none') {
+        bookAppointmentFields.style.display = 'block';
+    } else {
+        bookAppointmentFields.style.display = 'none';
+    }
+}
