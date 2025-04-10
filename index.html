@@ -61,6 +61,29 @@
             }
         }
     </script>
+    <style>
+        #qr-code-container {
+            display: none;
+            position: absolute;
+            z-index: 1000;
+        }
+
+        #footer {
+            position: relative;
+            z-index: 999;
+        }
+
+        #link-boxes-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        #link-boxes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -89,17 +112,19 @@
         </section>
     </div>
     <section id="MainBody">
-        <section id="link-boxes">
-            <div class="link-box" id="upload-box">
-                <a href="#" onclick="toggleUploadFields()">Upload Data</a>
-            </div>
-            <div class="link-box" id="book-appointment-box">
-                <a href="#" onclick="toggleBookAppointmentFields()">Book Appointment</a>
-            </div>
-            <div class="link-box" id="call-doctors-box">
-                <a href="#" onclick="showQRCode()">Call Doctors</a>
-            </div>
-        </section>
+        <div id="link-boxes-wrapper">
+            <section id="link-boxes">
+                <div class="link-box" id="upload-box">
+                    <a href="#" onclick="toggleUploadFields()">Upload Data</a>
+                </div>
+                <div class="link-box" id="book-appointment-box">
+                    <a href="#" onclick="toggleBookAppointmentFields()">Book Appointment</a>
+                </div>
+                <div class="link-box" id="call-doctors-box">
+                    <a href="#" onclick="showQRCode()">Call Doctors</a>
+                </div>
+            </section>
+        </div>
         <div id="qr-code-container" style="display: none;"></div>
 
         <form id="PatientVitals">
@@ -133,7 +158,7 @@
             </div>
         </section>
     </section>
-<script src="https://app.wotnot.io/chat-widget/4kSvWhk8LtJi111536614532mjGFWRiJ.js" defer></script>
+    <script src="https://app.wotnot.io/chat-widget/4kSvWhk8LtJi111536614532mjGFWRiJ.js" defer></script>
     <section id="footer">
         <footer>
             <a href="#"><i class="fa fa-instagram" aria-hidden="true" id="ins"></i></a>
