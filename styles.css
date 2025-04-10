@@ -30,6 +30,7 @@ body {
     align-items: center;
     height: 10%;
     overflow-y: hidden;
+    width: 100%; /* Added width */
 }
 
 #navbar {
@@ -39,6 +40,7 @@ body {
     align-items: center;
     cursor: pointer;
     color: white;
+    width: 100%; /* Added width */
 }
 
 #navbar a i,
@@ -140,6 +142,7 @@ body {
     align-items: center;
     margin-bottom: 50px;
     flex-direction: column;
+    width: 100%; /* Added width */
 }
 
 .field-container label {
@@ -153,6 +156,7 @@ body {
     border: 4px solid #ccc;
     border-radius: 5px;
     font-size: 1.2rem;
+    width: 100%; /* Added width */
 }
 
 #upload-fields button[type="submit"] {
@@ -400,14 +404,10 @@ body {
 
     .field-container label {
         width: 150px;
-        margin-right: 10px;
-        margin-bottom: 0;
-        text-align: right;
         font-size: 1.2rem;
     }
 
     .field-container input[type="text"] {
-        width: auto;
         font-size: 1.2rem;
     }
 
