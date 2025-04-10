@@ -3,6 +3,8 @@ const uploadFields = document.getElementById('upload-fields');
 const navbarUploadLink = document.getElementById('navbar-upload-link');
 
 let isVisible = false;
+let isBookAppointmentVisible = false;
+
 function checkLoginAndRedirect(event, redirectUrl) {
     event.preventDefault();
     const userEmail = localStorage.getItem('userEmail');
@@ -13,34 +15,6 @@ function checkLoginAndRedirect(event, redirectUrl) {
     window.location.href = redirectUrl;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-
-    const homeLink = document.getElementById('h');
-    const bookAppointmentLink = document.getElementById('b');
-    const symptomAnalysisLink = document.getElementById('s');
-    const bookAppointmentBox = document.getElementById('book-appointment-box');
-    const bookAppointmentNavbarLink = document.getElementById('b');
-
-    if (bookAppointmentBox) {
-        bookAppointmentBox.addEventListener('click', toggleBookAppointmentFields);
-    }
-
-    if (bookAppointmentNavbarLink) {
-        bookAppointmentNavbarLink.addEventListener('click', checkLoginAndToggleAppointment);
-    }
-
-    homeLink.addEventListener('click', (event) => {
-        checkLoginAndRedirect(event, "#Home");
-    });
-
-    bookAppointmentLink.addEventListener('click', (event) => {
-        checkLoginAndRedirect(event, "#Book Appointment");
-    });
-
-    symptomAnalysisLink.addEventListener('click', (event) => {
-        checkLoginAndRedirect(event, "#Symptom analysis");
-    });
-});
 function toggleUploadFields(event) {
     event.preventDefault();
 
@@ -49,13 +23,7 @@ function toggleUploadFields(event) {
         alert("Please sign in to proceed.");
         return;
     }
-    /*
-        if (!userEmail) {
-            // User is not logged in
-            showLoginMessage();
-            return; // Prevent further execution
-        }
-    */
+
     isVisible = !isVisible;
 
     if (isVisible) {
@@ -84,41 +52,63 @@ function toggleUploadFields(event) {
     }
 }
 
-uploadBox.addEventListener('click', toggleUploadFields);
-navbarUploadLink.addEventListener('click', toggleUploadFields);
-
-/*
-function showLoginMessage() {
-    const overlay = document.createElement('div');
-    overlay.id = 'overlay';
-    overlay.style.position = 'fixed';
-    overlay.style.display = 'block';
-    overlay.style.width = '100%';
-    overlay.style.height = '100%';
-    overlay.style.top = 0;
-    overlay.style.left = 0;
-    overlay.style.backgroundColor = 'rgba(0,0,0,0.6)';
-    overlay.style.zIndex = 1000;
-    overlay.style.cursor = 'pointer';
-
-    const message = document.createElement('div');
-    message.id = 'login-message';
-    message.textContent = 'Please sign in to proceed!';
-    message.style.position = 'absolute';
-    message.style.top = '50%';
-    message.style.left = '50%';
-    message.style.transform = 'translate(-50%, -50%)';
-    message.style.color = 'white';
-    message.style.fontSize = '44px';
-
-    overlay.appendChild(message);
-    document.body.appendChild(overlay);
-
-    overlay.addEventListener('click', () => {
-        document.body.removeChild(overlay);
-    });
+function checkLoginAndToggleAppointment(event) {
+    event.preventDefault();
+    const userEmail = localStorage.getItem('userEmail');
+    if (!userEmail) {
+        alert("Please sign in to proceed.");
+        return;
+    }
+    toggleBookAppointmentFields();
 }
-*/
+
+function toggleBookAppointmentFields(event) {
+    if(event){
+        event.preventDefault();
+    }
+
+    const userEmail = localStorage.getItem('userEmail');
+    if (!userEmail) {
+        alert("Please sign in to proceed.");
+        return;
+    }
+
+    isBookAppointmentVisible = !isBookAppointmentVisible;
+    const bookAppointmentFields = document.getElementById('book-appointment-fields');
+
+    if (isBookAppointmentVisible) {
+        bookAppointmentFields.style.display = 'block';
+        bookAppointmentFields.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
+        bookAppointmentFields.style.opacity = 0;
+        bookAppointmentFields.style.transform = 'translateY(-20px)';
+
+        setTimeout(() => {
+            bookAppointmentFields.style.opacity = 1;
+            bookAppointmentFields.style.transform = 'translateY(0)';
+        }, 10);
+    } else {
+        bookAppointmentFields.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
+        bookAppointmentFields.style.opacity = 1;
+        bookAppointmentFields.style.transform = 'translateY(0)';
+
+        setTimeout(() => {
+            bookAppointmentFields.style.opacity = 0;
+            bookAppointmentFields.style.transform = 'translateY(-20px)';
+        }, 10);
+
+        setTimeout(() => {
+            bookAppointmentFields.style.display = 'none';
+        }, 500);
+    }
+}
+
+function navigateToNewUser() {
+    window.location.href = "new_user_appointment.html";
+}
+
+function navigateToExistingUser() {
+    window.location.href = "existing_user_appointment.html";
+}
 
 function on() {
     document.getElementById("overlay").style.display = "block";
@@ -126,6 +116,10 @@ function on() {
 
 function off() {
     document.getElementById("overlay").style.display = "none";
+}
+
+function calldoctor() {
+    alert('calldoctor() function called');
 }
 
 const firebaseConfig = {
@@ -141,8 +135,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 var PatientVitalsDB = firebase.database().ref('PatientVitals');
-
-document.getElementById('PatientVitals').addEventListener('submit', submitForm);
 
 function submitForm(e) {
     e.preventDefault();
@@ -211,21 +203,54 @@ const getElementVal = (id) => {
     return document.getElementById(id).value;
 }
 
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 document.addEventListener('DOMContentLoaded', function () {
+    const homeLink = document.getElementById('h');
+    const bookAppointmentLink = document.getElementById('b');
+    const symptomAnalysisLink = document.getElementById('s');
+    const bookAppointmentBox = document.getElementById('book-appointment-box');
+    const bookAppointmentNavbarLink = document.getElementById('b');
     const userEmail = localStorage.getItem('userEmail');
     const userEmailDisplay = document.getElementById('user-email-display');
     const userLogo = document.querySelector('#userlogo').parentElement;
     const navbar = document.getElementById('navbar');
-
     const dropdown = document.createElement('div');
     dropdown.id = 'user-dropdown';
     const emailParagraph = document.createElement('p');
     const logoutButton = document.createElement('button');
     logoutButton.textContent = 'Logout';
+
     dropdown.appendChild(emailParagraph);
     dropdown.appendChild(logoutButton);
     document.body.appendChild(dropdown);
+
+    if (bookAppointmentBox) {
+        bookAppointmentBox.addEventListener('click', toggleBookAppointmentFields);
+    }
+
+    if (bookAppointmentNavbarLink) {
+        bookAppointmentNavbarLink.addEventListener('click', checkLoginAndToggleAppointment);
+    }
+
+    homeLink.addEventListener('click', (event) => {
+        checkLoginAndRedirect(event, "#Home");
+    });
+
+    bookAppointmentLink.addEventListener('click', (event) => {
+        checkLoginAndRedirect(event, "#Book Appointment");
+    });
+
+    symptomAnalysisLink.addEventListener('click', (event) => {
+        checkLoginAndRedirect(event, "#Symptom analysis");
+    });
 
     if (userEmail) {
         const username = userEmail.split('@')[0];
@@ -247,6 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
             emailParagraph.textContent = userEmail;
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         });
+
         document.addEventListener('click', (event) => {
             const isClickInsideDropdown = dropdown.contains(event.target);
             const isClickOnUserLogo = userEmailDisplay.contains(event.target);
@@ -255,6 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 dropdown.style.display = 'none';
             }
         });
+
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('userEmail');
             window.location.reload();
@@ -263,102 +290,8 @@ document.addEventListener('DOMContentLoaded', function () {
         userEmailDisplay.textContent = '';
         userLogo.style.display = 'inline-block';
     }
+
+    document.getElementById('PatientVitals').addEventListener('submit', submitForm);
+    uploadBox.addEventListener('click', toggleUploadFields);
+    navbarUploadLink.addEventListener('click', toggleUploadFields);
 });
-
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
-
-function calldoctor() {
-    alert('calldoctor() function called');
-
-}
-
-
-let isBookAppointmentVisible = false;
-
-function checkLoginAndToggleAppointment(event) {
-    event.preventDefault();
-    const userEmail = localStorage.getItem('userEmail');
-    if (!userEmail) {
-        alert("Please sign in to proceed.");
-        return;
-    }
-    toggleBookAppointmentFields();
-}
-
-function toggleBookAppointmentFields() {
-    const userEmail = localStorage.getItem('userEmail');
-    if (!userEmail) {
-        alert("Please sign in to proceed.");
-        return;
-    }
-
-    isBookAppointmentVisible = !isBookAppointmentVisible;
-    const bookAppointmentFields = document.getElementById('book-appointment-fields');
-
-    if (isBookAppointmentVisible) {
-        bookAppointmentFields.style.display = 'block';
-        bookAppointmentFields.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
-        bookAppointmentFields.style.opacity = 0;
-        bookAppointmentFields.style.transform = 'translateY(-20px)';
-
-        setTimeout(() => {
-            bookAppointmentFields.style.opacity = 1;
-            bookAppointmentFields.style.transform = 'translateY(0)';
-        }, 10);
-    } else {
-        bookAppointmentFields.style.transition = 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out';
-        bookAppointmentFields.style.opacity = 1;
-        bookAppointmentFields.style.transform = 'translateY(0)';
-
-        setTimeout(() => {
-            bookAppointmentFields.style.opacity = 0;
-            bookAppointmentFields.style.transform = 'translateY(-20px)';
-        }, 10);
-
-        setTimeout(() => {
-            bookAppointmentFields.style.display = 'none'
-        }, 500);
-    }
-}
-
-function navigateToNewUser() {
-    window.location.href = "new_user_appointment.html";
-}
-
-function navigateToExistingUser() {
-    window.location.href = "existing_user_appointment.html";
-}
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const bookAppointmentBox = document.getElementById('book-appointment-box');
-    if (bookAppointmentBox) {
-        bookAppointmentBox.addEventListener('click', toggleBookAppointmentFields);
-    }
-});
-
-function toggleUploadFields() {
-    const uploadFields = document.getElementById('upload-fields');
-    if (uploadFields.style.display === 'none') {
-        uploadFields.style.display = 'block';
-    } else {
-        uploadFields.style.display = 'none';
-    }
-}
-
-function toggleBookAppointmentFields() {
-    const bookAppointmentFields = document.getElementById('book-appointment-fields');
-    if (bookAppointmentFields.style.display === 'none') {
-        bookAppointmentFields.style.display = 'block';
-    } else {
-        bookAppointmentFields.style.display = 'none';
-    }
-}
