@@ -6,7 +6,6 @@ const twilio = require('twilio');
 const cors = require('cors');
 
 const app = express();
-const port = 5503;
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -40,15 +39,11 @@ app.post('/send-sms', async (req, res) => {
             body: body,
         });
         console.log("Twilio message:", message);
-        alert("Appointment booked successfully!");
+        res.send("SMS sent successfully"); // Send a success response
     } catch (error) {
         console.error("Twilio error:", error);
         res.status(500).send('Error sending SMS');
     }
 });
 
-console.log("Starting server...");
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
-});
-console.log("Server started."); 
+module.exports = app;
