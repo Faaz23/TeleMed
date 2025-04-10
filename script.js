@@ -242,7 +242,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     symptomAnalysisLink.addEventListener('click', (event) => {
-        checkLoginAndRedirect(event, "#Symptom analysis");
+        event.preventDefault();
+        window.location.href = "symptom_analysis.html";
     });
 
     if (userEmail) {
