@@ -64,7 +64,7 @@ function checkLoginAndToggleAppointment(event) {
 }
 
 function toggleBookAppointmentFields(event) {
-    if (event) {
+    if(event){
         event.preventDefault();
     }
 
