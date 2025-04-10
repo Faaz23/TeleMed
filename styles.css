@@ -1,20 +1,4 @@
-button:focus {
-    outline: none;
-}
 
-button:active {
-    transform: translateY(1px) translateZ(0);
-    box-shadow: none;
-    pointer-events: none; /* Disable pointer events during active state */
-}
-
-button {
-    will-change: transform;
-    backface-visibility: hidden;
-    user-select: none; /* Prevent text selection */
-    position: relative;
-    height: 30px;
-}
 html {
     scroll-behavior: smooth;
     margin: 0;
@@ -26,6 +10,7 @@ html {
     box-sizing: border-box;
     overflow-x: hidden;
     font-family: "Prompt", serif;
+
 }
 
 body {
@@ -38,6 +23,7 @@ body {
 
 #Navbar {
     color: white;
+    /*background-color: rgba(128, 128, 128, 0.727);*/
     background-color: rgba(128, 128, 128, 0.727);
     padding: 20px;
     font-size: 1.3rem;
@@ -47,7 +33,6 @@ body {
     align-items: center;
     height: 10%;
     overflow-y: hidden;
-    width: 100%;
 }
 
 #navbar {
@@ -57,7 +42,6 @@ body {
     align-items: center;
     cursor: pointer;
     color: white;
-    width: 100%;
 }
 
 #navbar a i,
@@ -65,10 +49,12 @@ body {
     vertical-align: text-bottom;
 }
 
+
 #navbar a {
     text-decoration: none;
     color: white;
     padding: 0 15px;
+
 }
 
 #navbar a:hover {
@@ -79,6 +65,7 @@ body {
     display: flex;
     width: 5%;
     height: auto;
+
 }
 
 #logo img {
@@ -89,12 +76,14 @@ body {
 #MainBody {
     background-image: url('bgimg.jpg');
     background-size: cover;
+    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     top: 60px;
     flex: 1;
     min-height: 100%;
     width: 100%;
+
 }
 
 #link-boxes {
@@ -130,6 +119,8 @@ body {
     cursor: pointer;
 }
 
+
+
 #upload-fields {
     display: none;
     margin-top: 20px;
@@ -145,6 +136,7 @@ body {
     transform: translateY(-20px);
     flex-direction: column;
     overflow-y: hidden;
+
 }
 
 #success-message {
@@ -159,7 +151,8 @@ body {
     align-items: center;
     margin-bottom: 50px;
     flex-direction: column;
-    width: 100%;
+
+
 }
 
 .field-container label {
@@ -173,7 +166,7 @@ body {
     border: 4px solid #ccc;
     border-radius: 5px;
     font-size: 1.2rem;
-    width: 100%;
+
 }
 
 #upload-fields button[type="submit"] {
@@ -186,12 +179,18 @@ body {
     width: 18%;
     margin-left: 40px;
     font-size: 1.1rem;
-    transition: transform 0.1s ease;
+
 }
 
 #upload-fields button[type="submit"]:hover {
     background-color: black;
 }
+
+
+
+
+
+
 
 #link-boxes {
     flex-direction: column;
@@ -234,6 +233,7 @@ body {
     margin-right: auto;
     display: block;
 }
+
 
 @media (min-width: 768px) {
     #MainBody {
@@ -289,15 +289,7 @@ body {
         width: calc(3 * (400px + 20px) - 20px);
         padding: 70px;
         font-size: 1.2rem;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .field-container {
-        flex-direction: row;
-        align-items: center;
-        width: auto;
-        margin-bottom: 10px;
+        flex-direction: column;
     }
 
     .field-container label {
@@ -319,6 +311,8 @@ body {
     #footer {
         font-size: 1.2rem;
         bottom: 0;
+
+
     }
 
     #login-word {
@@ -339,6 +333,7 @@ body {
     }
 
     @keyframes loginFadeScale {
+
         0%,
         100% {
             opacity: 0;
@@ -352,6 +347,7 @@ body {
     }
 }
 
+
 @media (width: 385px) and (height: 659px) {
     #link-boxes {
         margin-top: 100px;
@@ -364,6 +360,8 @@ body {
     .link-box a {
         font-size: 1rem;
     }
+
+
 }
 
 #upload-fields {
@@ -404,6 +402,7 @@ body {
     display: block;
 }
 
+
 @media (min-width: 768px) {
     #upload-fields {
         width: calc(3 * (400px + 20px) - 20px);
@@ -422,10 +421,14 @@ body {
 
     .field-container label {
         width: 150px;
+        margin-right: 10px;
+        margin-bottom: 0;
+        text-align: right;
         font-size: 1.2rem;
     }
 
     .field-container input[type="text"] {
+        width: auto;
         font-size: 1.2rem;
     }
 
@@ -435,9 +438,11 @@ body {
         margin-left: 40px;
         display: inline-block;
     }
+
 }
 
 @media (min-width: 350px) and (max-width: 800px) {
+
     #u,
     #b,
     #s,
@@ -461,6 +466,7 @@ body {
         justify-content: flex-end;
         align-items: flex-end;
         margin-left: 240px;
+
     }
 }
 
@@ -474,6 +480,7 @@ footer {
     padding: 8px;
     flex-shrink: 0;
     font-size: 1.2rem;
+
 }
 
 .twitter {
@@ -513,6 +520,40 @@ footer a {
     color: #333;
 }
 
+/*
+#overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
+*/
+#text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 50px;
+    color: white;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+/*
+#chatbot
+{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:180px;
+}
+*/
 @media (max-width: 768px) {
     #Navbar {
         color: white;
@@ -535,6 +576,7 @@ footer a {
     #logo img {
         width: auto;
         height: auto;
+
     }
 
     #MainBody {
@@ -559,8 +601,8 @@ footer a {
     #login-word {
         display: none;
     }
-    #navbar-upload-link
-    {
+
+    #navbar-upload-link {
         display: none;
     }
 }
@@ -577,6 +619,7 @@ footer a {
 #logout-button:hover {
     text-decoration: underline;
 }
+
 
 #user-dropdown {
     position: absolute;
@@ -602,7 +645,7 @@ footer a {
     cursor: pointer;
 }
 
-#user-dropdown button:hover {
+#user-dropdown button :hover {
     cursor: pointer;
     color: white;
     background-color: black;
@@ -613,6 +656,7 @@ footer a {
     color: white;
     font-size: 1rem;
 }
+
 
 #user-email-display {
     display: none;
@@ -634,6 +678,7 @@ footer a {
     font-size: 1.2rem;
     margin: 10px;
 }
+
 
 #book-appointment-fields label input[type="radio"] {
     margin-right: 5px;
