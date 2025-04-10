@@ -50,24 +50,26 @@ document.getElementById('newAppointmentForm').addEventListener('submit', functio
         .then(() => {
             formattedPhone = phone.startsWith('+') ? phone : '+' + phone;
 
-            fetch('http://localhost:5503/send-sms', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    to: formattedPhone,
-                    body: `Your appointment with ${doctor} on ${dateTime} has been booked.`,
-                }),
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        console.error("SMS sending failed:", response.status, response.statusText);
-                    }
-                })
-                .catch(error => {
-                    console.error("SMS sending error:", error);
-                });
+           fetch('https://tele-med-gilt.vercel.app/api/send-sms', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        to: formattedPhone,
+        body: `Your appointment with ${doctor} on ${dateTime} has been booked.`,
+    }),
+})
+    .then(response => {
+        if (!response.ok) {
+            console.error("SMS sending failed:", response.status, response.statusText);
+        } else {
+            console.log("SMS sent successfully");
+        }
+    })
+    .catch(error => {
+        console.error("SMS sending error:", error);
+    });
 
             document.getElementById('successMessage').style.display = 'block';
             document.getElementById('errorMessage').style.display = 'none';
