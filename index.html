@@ -37,11 +37,11 @@
                 qrCodeVisible = false;
             } else {
                 qrCodeContainer.innerHTML = `
-            <div style="display: flex; align-items: center; background-color: white; padding: 20px; border-radius: 10px; width: 100%; height: 160px;">
-                <p style="margin-right: 20px;">Scan the QR code to call doctors</p>
-                <img src="TeleMed QR.png" alt="QR Code to Call Doctors" style="width: 200px; height: 180px;">
-            </div>
-        `;
+                <div style="display: flex; align-items: center; background-color: white; padding: 20px; border-radius: 10px; width: 100%; height: 160px;">
+                    <p style="margin-right: 20px;">Scan the QR code to call doctors</p>
+                    <img src="TeleMed QR.png" alt="QR Code to Call Doctors" style="width: 200px; height: 180px;">
+                </div>
+            `;
                 qrCodeContainer.style.display = 'block';
                 qrCodeContainer.style.position = 'absolute';
                 qrCodeContainer.style.top = document.getElementById('call-doctors-box').offsetTop + document.getElementById('call-doctors-box').offsetHeight + 10 + 'px';
@@ -97,7 +97,7 @@
                 <a href="#" onclick="toggleBookAppointmentFields()">Book Appointment</a>
             </div>
             <div class="link-box" id="call-doctors-box">
-                <a href="#" onclick="showQRCode()">Call Doctors</a>
+                <a href="#">Call Doctors</a>
             </div>
         </section>
         <div id="qr-code-container" style="display: none;"></div>
