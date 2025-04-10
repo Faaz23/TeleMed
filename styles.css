@@ -76,6 +76,7 @@ body {
 #MainBody {
     background-image: url('bgimg.jpg');
     background-size: cover;
+    background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     top: 60px;
