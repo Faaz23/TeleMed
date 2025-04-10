@@ -39,7 +39,7 @@ app.post('/send-sms', async (req, res) => {
             body: body,
         });
         console.log("Twilio message:", message);
-        res.send("SMS sent successfully"); // Send a success response
+        res.send("SMS sent successfully"); 
     } catch (error) {
         console.error("Twilio error:", error);
         res.status(500).send('Error sending SMS');
