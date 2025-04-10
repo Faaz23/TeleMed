@@ -16,7 +16,34 @@ const auth = getAuth(app);
 
 const submit = document.getElementById('submit');
 const successMessage = document.getElementById('success-message');
-const signinSubmit = document.getElementById('signin-submit');
+let signinSubmit;
+
+document.addEventListener('DOMContentLoaded', function () {
+    signinSubmit = document.getElementById('signin-submit');
+
+    if (signinSubmit) {
+        signinSubmit.addEventListener("click", function (event) {
+            event.preventDefault();
+            const email = document.getElementById('email-signin').value;
+            const password = document.getElementById('password-signin').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    localStorage.setItem('userEmail', user.email);
+                    window.location.href = "index.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert("Error: " + errorMessage);
+                    console.error("Signin error:", errorCode, errorMessage);
+                });
+        });
+    } else {
+        console.error("signinSubmit element not found.");
+    }
+});
 
 submit.addEventListener("click", function (event) {
     event.preventDefault();
@@ -40,25 +67,6 @@ submit.addEventListener("click", function (event) {
             const errorMessage = error.message;
             alert("Error: " + errorMessage);
             console.error("Signup error:", errorCode, errorMessage);
-        });
-});
-
-signinSubmit.addEventListener("click", function (event) {
-    event.preventDefault();
-    const email = document.getElementById('email-signin').value;
-    const password = document.getElementById('password-signin').value;
-
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            localStorage.setItem('userEmail', user.email);
-            window.location.href = "index.html";
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert("Error: " + errorMessage);
-            console.error("Signin error:", errorCode, errorMessage);
         });
 });
 
