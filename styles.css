@@ -1,3 +1,13 @@
+button:focus {
+    outline: none;
+}
+button {
+    will-change: transform;
+}
+button:active {
+    transform: translateY(1px); /* Slight downward push */
+    box-shadow: none; /* Remove any default shadow changes */
+}
 html {
     scroll-behavior: smooth;
     margin: 0;
