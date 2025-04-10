@@ -14,12 +14,40 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const submit = document.getElementById('submit');
-const successMessage = document.getElementById('success-message');
-let signinSubmit;
-
 document.addEventListener('DOMContentLoaded', function () {
-    signinSubmit = document.getElementById('signin-submit');
+    const submit = document.getElementById('submit');
+    const successMessage = document.getElementById('success-message');
+    const signinSubmit = document.getElementById('signin-submit');
+    const googleSignin = document.getElementById('googlesignin');
+    const googleSigninLogin = document.getElementById('googlesignin-signin');
+    const backButton = document.getElementById('back-button');
+
+    if (submit) {
+        submit.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    localStorage.setItem('userEmail', user.email);
+
+                    successMessage.style.display = 'block';
+
+                    setTimeout(() => {
+                        window.location.href = "index.html";
+                    }, 2500);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert("Error: " + errorMessage);
+                    console.error("Signup error:", errorCode, errorMessage);
+                });
+        });
+    }
 
     if (signinSubmit) {
         signinSubmit.addEventListener("click", function (event) {
@@ -43,74 +71,53 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.error("signinSubmit element not found.");
     }
-});
 
-submit.addEventListener("click", function (event) {
-    event.preventDefault();
+    if (googleSignin) {
+        googleSignin.addEventListener("click", function () {
+            const provider = new GoogleAuthProvider();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    localStorage.setItem('userEmail', user.email);
 
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            localStorage.setItem('userEmail', user.email);
-
-            successMessage.style.display = 'block';
-
-            setTimeout(() => {
-                window.location.href = "index.html";
-            }, 2500);
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert("Error: " + errorMessage);
-            console.error("Signup error:", errorCode, errorMessage);
+                    window.location.href = "index.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert("Google Sign-In Error: " + errorMessage);
+                    console.error("Google Sign-In error:", errorCode, errorMessage);
+                });
         });
-});
+    }
 
-const googleSignin = document.getElementById('googlesignin');
-const googleSigninLogin = document.getElementById('googlesignin-signin');
+    if (googleSigninLogin) {
+        googleSigninLogin.addEventListener("click", function () {
+            const provider = new GoogleAuthProvider();
 
-googleSignin.addEventListener("click", function () {
-    const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    localStorage.setItem('userEmail', user.email);
 
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            const user = result.user;
-            localStorage.setItem('userEmail', user.email);
+                    window.location.href = "index.html";
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
 
-            window.location.href = "index.html";
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert("Google Sign-In Error: " + errorMessage);
-            console.error("Google Sign-In error:", errorCode, errorMessage);
+                    if (errorCode === 'auth/cancelled-popup-request') {
+                        console.log('Google Sign-In pop-up was closed by the user.');
+                    } else {
+                        alert("Google Sign-In Error: " + errorMessage);
+                        console.error("Google Sign-In error:", errorCode, errorMessage);
+                    }
+                });
         });
-});
-
-googleSigninLogin.addEventListener("click", function () {
-    const provider = new GoogleAuthProvider();
-
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            const user = result.user;
-            localStorage.setItem('userEmail', user.email);
-
-            window.location.href = "index.html";
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert("Google Sign-In Error: " + errorMessage);
-            console.error("Google Sign-In error:", errorCode, errorMessage);
-        });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const backButton = document.getElementById('back-button');
+    } else {
+        console.error("googleSigninLogin element not found.");
+    }
 
     if (backButton) {
         backButton.addEventListener('click', () => {
