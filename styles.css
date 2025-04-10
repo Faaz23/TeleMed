@@ -3,13 +3,17 @@ button:focus {
 }
 
 button:active {
-    transform: translateY(1px) translateZ(0); /* Add translateZ(0) */
+    transform: translateY(1px) translateZ(0);
     box-shadow: none;
+    pointer-events: none; /* Disable pointer events during active state */
 }
 
 button {
     will-change: transform;
-    backface-visibility: hidden; /* Add backface-visibility */
+    backface-visibility: hidden;
+    user-select: none; /* Prevent text selection */
+    position: relative;
+    height: 30px;
 }
 html {
     scroll-behavior: smooth;
