@@ -44,32 +44,33 @@ document.getElementById('newAppointmentForm').addEventListener('submit', functio
         appointmentRef = database.ref('appointments/existing');
     }
 
-    let formattedPhone;
+    let formattedPhone = phone;
+    if (!phone.startsWith('+')) {
+        formattedPhone = '+91' + phone;
+    }
+    
+   
 
-    appointmentRef.push(appointmentData)
-        .then(() => {
-            formattedPhone = phone.startsWith('+') ? phone : '+' + phone;
-
-           fetch('https://tele-med-gilt.vercel.app/api/send-sms', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-        to: formattedPhone,
-        body: `Your appointment with ${doctor} on ${dateTime} has been booked.`,
-    }),
-})
-    .then(response => {
-        if (!response.ok) {
-            console.error("SMS sending failed:", response.status, response.statusText);
-        } else {
-            console.log("SMS sent successfully");
-        }
-    })
-    .catch(error => {
-        console.error("SMS sending error:", error);
-    });
+            fetch('https://tele-med-gilt.vercel.app/api/send-sms', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    to: formattedPhone,
+                    body: `Your appointment with ${doctor} on ${dateTime} has been booked.`,
+                }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        console.error("SMS sending failed:", response.status, response.statusText);
+                    } else {
+                        console.log("SMS sent successfully");
+                    }
+                })
+                .catch(error => {
+                    console.error("SMS sending error:", error);
+                });
 
             document.getElementById('successMessage').style.display = 'block';
             document.getElementById('errorMessage').style.display = 'none';
@@ -83,7 +84,7 @@ document.getElementById('newAppointmentForm').addEventListener('submit', functio
             document.getElementById('errorMessage').style.display = 'block';
             document.getElementById('successMessage').style.display = 'none';
         });
-});
+
 
 document.addEventListener('DOMContentLoaded', function () {
     const backButton = document.getElementById('back-button');
