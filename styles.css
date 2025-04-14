@@ -497,28 +497,7 @@ footer a {
 #twi:hover {
     color: #333;
 }
-    #book-appointment-fields {
-    width: 86.5%;
-    padding: 50px;
-    font-size: 1rem;
-    display: none;
-    margin: 20px auto;
-    box-sizing: border-box;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    display: flex;
-   
-}
 
-#book-appointment-fields label {
-    font-size: 1.2rem;
-    margin: 10px;
-   
-}
-
-#book-appointment-fields label input[type="radio"] {
-    margin-right: 5px;
-}
 
 @media (max-width: 768px) {
     #Navbar {
@@ -570,6 +549,28 @@ footer a {
     {
         display: none;
     }
+        #book-appointment-fields {
+    width: 86.5%;
+    padding: 50px;
+    font-size: 1rem;
+    display: none;
+    margin: 20px auto;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    display: flex;
+   
+}
+
+#book-appointment-fields label {
+    font-size: 1.2rem;
+    margin: 10px;
+   
+}
+
+#book-appointment-fields label input[type="radio"] {
+    margin-right: 5px;
+}
 }
 
 #logout-button {
