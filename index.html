@@ -126,10 +126,11 @@
         </form>
 
         <section id="book-appointment-fields" style="display: none;">
-           <div class="radio-group">
-        <label><input type="radio" name="userType" value="new" required> New User</label>
-        <label><input type="radio" name="userType" value="existing" required> Existing User</label>
-    </div>
+            <div id="user-selection" style="text-align: center; margin-bottom: 20px;">
+                <label><input type="radio" name="userType" value="new" onclick="navigateToNewUser()"> New User</label>
+                <label><input type="radio" name="userType" value="existing" onclick="navigateToExistingUser()"> Existing
+                    User</label>
+            </div>
         </section>
     </section>
 <script src="https://app.wotnot.io/chat-widget/4kSvWhk8LtJi111536614532mjGFWRiJ.js" defer></script>
