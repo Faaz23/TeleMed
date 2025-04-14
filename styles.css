@@ -545,11 +545,6 @@ footer a {
     {
         display: none;
     }
-    #book-appointment-fields .radio-group { 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
 }
 
 #logout-button {
@@ -615,7 +610,6 @@ footer a {
     box-sizing: border-box;
     background-color: #f8f8f8;
     border-radius: 10px;
-    flex-direction: column;
 }
 
 #book-appointment-fields label {
@@ -627,4 +621,3 @@ footer a {
 #book-appointment-fields label input[type="radio"] {
     margin-right: 5px;
 }
-
