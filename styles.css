@@ -385,28 +385,7 @@ body {
     margin-right: auto;
     display: block;
 }
-#book-appointment-fields {
-    width: 86.5%;
-    padding: 50px;
-    font-size: 1rem;
-    display: none;
-    margin: 20px auto;
-    box-sizing: border-box;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column; 
-}
 
-#book-appointment-fields label {
-    font-size: 1.2rem;
-    margin: 10px;
-    display: block;
-}
-
-#book-appointment-fields label input[type="radio"] {
-    margin-right: 5px;
-}
 
 
 @media (min-width: 768px) {
@@ -440,6 +419,28 @@ body {
         margin-left: 40px;
         display: inline-block;
     }
+    #book-appointment-fields {
+    width: 86.5%;
+    padding: 50px;
+    font-size: 1rem;
+    display: none;
+    margin: 20px auto;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column; 
+}
+
+#book-appointment-fields label {
+    font-size: 1.2rem;
+    margin: 10px;
+    display: block;
+}
+
+#book-appointment-fields label input[type="radio"] {
+    margin-right: 5px;
+}
 }
 
 @media (min-width: 350px) and (max-width: 800px) {
