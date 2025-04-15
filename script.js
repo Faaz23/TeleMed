@@ -64,7 +64,7 @@ function checkLoginAndToggleAppointment(event) {
 }
 
 function toggleBookAppointmentFields(event) {
-    if (event) {
+    if(event){
         event.preventDefault();
     }
 
@@ -288,19 +288,5 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('PatientVitals').addEventListener('submit', submitForm);
     uploadBox.addEventListener('click', toggleUploadFields);
     navbarUploadLink.addEventListener('click', toggleUploadFields);
-
-    const callDoctorsBox = document.getElementById('call-doctors-box');
-const callDoctorsDropdown = document.getElementById('call-doctors-dropdown');
-
-callDoctorsBox.addEventListener('click', () => {
-    callDoctorsDropdown.classList.toggle('show');
-});
-
-document.addEventListener('click', (event) => {
-    if (!callDoctorsBox.contains(event.target) && !callDoctorsDropdown.contains(event.target)) {
-        callDoctorsDropdown.classList.remove('show');
-    }
-});
-    });
-
+    callDoctorsBox.addEventListener('click', showQRCode);
 });
