@@ -643,3 +643,15 @@ footer a {
 #book-appointment-fields label input[type="radio"] {
     margin-right: 5px;
 }
+#call-doctors-dropdown {
+    /* ... other styles ... */
+    transform: translateY(-10px);
+    transition: transform 0.3s ease; /* Add transition */
+    opacity: 0; /*start hidden*/
+    display: block;
+}
+
+#call-doctors-dropdown.show {
+    transform: translateY(0);
+    opacity: 1;
+}
