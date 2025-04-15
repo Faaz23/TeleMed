@@ -289,16 +289,18 @@ document.addEventListener('DOMContentLoaded', function () {
     uploadBox.addEventListener('click', toggleUploadFields);
     navbarUploadLink.addEventListener('click', toggleUploadFields);
 
-    const callDoctorsDropdown = document.getElementById('call-doctors-dropdown');
+    const callDoctorsBox = document.getElementById('call-doctors-box');
+const callDoctorsDropdown = document.getElementById('call-doctors-dropdown');
 
-    callDoctorsBox.addEventListener('click', () => {
-        callDoctorsDropdown.classList.toggle('show');
-    });
+callDoctorsBox.addEventListener('click', () => {
+    callDoctorsDropdown.classList.toggle('show');
+});
 
-    document.addEventListener('click', (event) => {
-        if (!callDoctorsBox.contains(event.target) && !callDoctorsDropdown.contains(event.target)) {
-            callDoctorsDropdown.classList.remove('show');
-        }
+document.addEventListener('click', (event) => {
+    if (!callDoctorsBox.contains(event.target) && !callDoctorsDropdown.contains(event.target)) {
+        callDoctorsDropdown.classList.remove('show');
+    }
+});
     });
 
 });
