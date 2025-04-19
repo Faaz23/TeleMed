@@ -48,8 +48,10 @@ document.getElementById('newAppointmentForm').addEventListener('submit', functio
     if (!phone.startsWith('+')) {
         formattedPhone = '+91' + phone;
     }
-    
-   
+
+    appointmentRef.push(appointmentData) // Save to Firebase FIRST
+        .then(() => {
+            console.log('Appointment data saved successfully!');
 
             fetch('https://tele-med-gilt.vercel.app/api/send-sms', {
                 method: 'POST',
@@ -76,15 +78,14 @@ document.getElementById('newAppointmentForm').addEventListener('submit', functio
             document.getElementById('errorMessage').style.display = 'none';
             alert("Appointment booked successfully!");
             window.location.href = "payment.html";
-
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('Error saving appointment data:', error);
             document.getElementById('errorMessage').textContent = 'Error booking appointment: ' + error.message;
             document.getElementById('errorMessage').style.display = 'block';
             document.getElementById('successMessage').style.display = 'none';
         });
-
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     const backButton = document.getElementById('back-button');
