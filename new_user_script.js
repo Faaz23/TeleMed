@@ -49,20 +49,19 @@ document.getElementById('newAppointmentForm').addEventListener('submit', functio
                 const existingAppointment = childSnapshot.val();
                 if (existingAppointment.dateTime === dateTime) {
                     isSlotBooked = true;
-                    return true; // Break out of the forEach loop
+                    return true;
                 }
             });
 
             if (isSlotBooked) {
-                alert(`The selected date and time (${dateTime}) are already booked for Dr. ${doctor}. Please choose another time.`);
-                return; // Prevent further booking
+                alert(`The selected date and time (${dateTime}) are already booked for ${doctor}. Please choose another time.`);
+                return; 
             }
 
             // If the slot is not booked, proceed with booking
             appointmentsRef.push(appointmentData)
                 .then(() => {
                     console.log('Appointment data saved successfully!');
-                    // ... (rest of your success handling code: SMS, success message, redirect) ...
                     let formattedPhone = phone;
                     if (!phone.startsWith('+')) {
                         formattedPhone = '+91' + phone;
