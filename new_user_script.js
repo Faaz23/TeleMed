@@ -35,53 +35,75 @@ document.getElementById('newAppointmentForm').addEventListener('submit', functio
     };
 
     let isNewUser = true;
+    const appointmentRefPath = isNewUser ? 'appointments/new' : 'appointments/existing';
+    const appointmentsRef = database.ref(appointmentRefPath);
 
-    let appointmentRef;
+    // Check if the selected time slot is already booked for the chosen doctor
+    appointmentsRef
+        .orderByChild('doctor')
+        .equalTo(doctor)
+        .once('value')
+        .then(snapshot => {
+            let isSlotBooked = false;
+            snapshot.forEach(childSnapshot => {
+                const existingAppointment = childSnapshot.val();
+                if (existingAppointment.dateTime === dateTime) {
+                    isSlotBooked = true;
+                    return true; // Break out of the forEach loop
+                }
+            });
 
-    if (isNewUser) {
-        appointmentRef = database.ref('appointments/new');
-    } else {
-        appointmentRef = database.ref('appointments/existing');
-    }
+            if (isSlotBooked) {
+                alert(`The selected date and time (${dateTime}) are already booked for Dr. ${doctor}. Please choose another time.`);
+                return; // Prevent further booking
+            }
 
-    let formattedPhone = phone;
-    if (!phone.startsWith('+')) {
-        formattedPhone = '+91' + phone;
-    }
-
-    appointmentRef.push(appointmentData) // Save to Firebase FIRST
-        .then(() => {
-            console.log('Appointment data saved successfully!');
-
-            fetch('https://tele-med-gilt.vercel.app/api/send-sms', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    to: formattedPhone,
-                    body: `Your appointment with ${doctor} on ${dateTime} has been booked.`,
-                }),
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        console.error("SMS sending failed:", response.status, response.statusText);
-                    } else {
-                        console.log("SMS sent successfully");
+            // If the slot is not booked, proceed with booking
+            appointmentsRef.push(appointmentData)
+                .then(() => {
+                    console.log('Appointment data saved successfully!');
+                    // ... (rest of your success handling code: SMS, success message, redirect) ...
+                    let formattedPhone = phone;
+                    if (!phone.startsWith('+')) {
+                        formattedPhone = '+91' + phone;
                     }
+
+                    fetch('https://tele-med-gilt.vercel.app/api/send-sms', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            to: formattedPhone,
+                            body: `Your appointment with ${doctor} on ${dateTime} has been booked.`,
+                        }),
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                console.error("SMS sending failed:", response.status, response.statusText);
+                            } else {
+                                console.log("SMS sent successfully");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("SMS sending error:", error);
+                        });
+
+                    document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('errorMessage').style.display = 'none';
+                    alert("Appointment booked successfully!");
+                    window.location.href = "payment.html";
                 })
                 .catch(error => {
-                    console.error("SMS sending error:", error);
+                    console.error('Error saving appointment data:', error);
+                    document.getElementById('errorMessage').textContent = 'Error booking appointment: ' + error.message;
+                    document.getElementById('errorMessage').style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'none';
                 });
-
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('errorMessage').style.display = 'none';
-            alert("Appointment booked successfully!");
-            window.location.href = "payment.html";
         })
         .catch(error => {
-            console.error('Error saving appointment data:', error);
-            document.getElementById('errorMessage').textContent = 'Error booking appointment: ' + error.message;
+            console.error('Error checking for existing appointments:', error);
+            document.getElementById('errorMessage').textContent = 'Error checking availability. Please try again.';
             document.getElementById('errorMessage').style.display = 'block';
             document.getElementById('successMessage').style.display = 'none';
         });
