@@ -8,11 +8,14 @@ const firebaseConfig = {
     appId: "1:425762040195:web:ca0c1fb1d5cbd32d772eb6"
 };
 
-firebase.initializeApp(firebaseConfig);
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
 const database = firebase.database();
 
 document.getElementById('newAppointmentForm').addEventListener('submit', function (event) {
-    event.preventDefault();
+    event.preventDefault(); // This stops the page refresh
 
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
@@ -32,60 +35,62 @@ document.getElementById('newAppointmentForm').addEventListener('submit', functio
         speciality: speciality,
         reason: reason,
         communication: communication,
+        timestamp: new Date().toISOString()
     };
 
-    let isNewUser = true;
 
-    let appointmentRef;
+    const appointmentRef = database.ref('appointments/new').push();
+    appointmentRef.set(appointmentData)
+        .then(() => {
+            console.log("Data saved to Firebase");
+            
+            // Format phone for SMS
+            let formattedPhone = phone;
+            if (!phone.startsWith('+')) {
+                formattedPhone = '+91' + phone;
+            }
 
-    if (isNewUser) {
-        appointmentRef = database.ref('appointments/new');
-    } else {
-        appointmentRef = database.ref('appointments/existing');
-    }
-
-    let formattedPhone = phone;
-    if (!phone.startsWith('+')) {
-        formattedPhone = '+91' + phone;
-    }
-
-
-    fetch('https://tele-med-gilt.vercel.app/api/send-sms', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            to: formattedPhone,
-            body: `Your appointment with ${doctor} on ${dateTime} has been booked.`,
-            from: process.env.TWILIO_FROM_NUMBER,
-        }),
-    })
+            return fetch('https://tele-med-gilt.vercel.app/api/send-sms', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    to: formattedPhone,
+                    body: `Your appointment with ${doctor} on ${dateTime} has been booked.`,
+                    // Removed process.env as it causes client-side errors
+                }),
+            });
+        })
         .then(response => {
             if (!response.ok) {
-                console.error("SMS sending failed:", response.status, response.statusText);
-            } else {
-                console.log("SMS sent successfully");
+                console.error("SMS notification failed, but appointment saved.");
             }
+            
+            // Show success UI
+            document.getElementById('successMessage').style.display = 'block';
+            if(document.getElementById('errorMessage')) {
+                document.getElementById('errorMessage').style.display = 'none';
+            }
+
+            alert("Appointment booked successfully!");
+
+            setTimeout(() => {
+                window.location.href = "payment.html";
+            }, 2000);
         })
         .catch(error => {
-            console.error("SMS sending error:", error);
+            console.error('Error:', error);
+            const errorDiv = document.getElementById('errorMessage');
+            if (errorDiv) {
+                errorDiv.textContent = 'Error: ' + error.message;
+                errorDiv.style.display = 'block';
+            }
         });
-
-    document.getElementById('successMessage').style.display = 'block';
-    
-    alert("Appointment booked successfully!");
-    
-    // Wait 2 seconds so they can see the green message before redirecting
-    setTimeout(() => {
-        window.location.href = "payment.html";
-    }, 2000);
-    
-
+}); 
 
 document.addEventListener('DOMContentLoaded', function () {
     const backButton = document.getElementById('back-button');
-
     if (backButton) {
         backButton.addEventListener('click', () => {
             window.location.href = 'index.html';
