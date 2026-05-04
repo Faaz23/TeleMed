@@ -73,17 +73,14 @@ document.getElementById('newAppointmentForm').addEventListener('submit', functio
         });
 
     document.getElementById('successMessage').style.display = 'block';
-    document.getElementById('errorMessage').style.display = 'none';
+    
     alert("Appointment booked successfully!");
-    window.location.href = "payment.html";
-
-})
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('errorMessage').textContent = 'Error booking appointment: ' + error.message;
-        document.getElementById('errorMessage').style.display = 'block';
-        document.getElementById('successMessage').style.display = 'none';
-    });
+    
+    // Wait 2 seconds so they can see the green message before redirecting
+    setTimeout(() => {
+        window.location.href = "payment.html";
+    }, 2000);
+    
 
 
 document.addEventListener('DOMContentLoaded', function () {
