@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="chatbot.css">
+    <title>Ollama Integration</title>
+
+</head>
+<body>
+    <img src="rob.webp" alt="Image">
+    <div class="chat-container">
+        <div id="loading-message">
+            Loading, please wait...
+          </div><br/>
+        <div class="chat-header">
+            TeleMed Consultant Manager
+            <button id="themeToggle" class="theme-toggle">🌙</button>
+        </div>
+        <div class="chat-body" id="chatBody">
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="userInput" placeholder="Type your message..." />
+            <button id="submitBtn">Send</button>
+        </div>
+    </div>
+
+    <button id="resetBtn" class="reset-button">Reset</button>
+ 
+    <script src="main.js"></script>
+</body>
+</html>

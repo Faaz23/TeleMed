@@ -1,0 +1,101 @@
+body {
+    font-family: 'Prompt', sans-serif;
+    background-image: url('bgimg.avif');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+
+}
+
+.appointment-container {
+
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 500px;
+    margin-top: 2px;
+}
+
+#newAppointmentForm {
+    margin-top: 1px;
+    background-color: white;
+    border: 1px solid white;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#existingAppointmentForm {
+    margin-top: 1px;
+    background-color: white;
+    border: 1px solid white;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+#Navbar {
+    display: none;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="datetime-local"],
+select,
+textarea,
+input[type="file"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(95, 95, 95);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1.2rem;
+}
+
+button:hover {
+    background-color: black;
+}
+
+input[type="radio"] {
+    display: inline-block;
+    margin: 10px 5px;
+}
+
+@media (max-width: 600px) {
+    .appointment-container {
+        width: 90%;
+        padding: 20px;
+    }
+}
